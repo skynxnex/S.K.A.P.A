@@ -9,6 +9,7 @@ public class Test {
 		//Detta är ett pushtest!!!
 
 		System.out.println("hello team!");
+		System.out.println("what's up team?");
 		
 	}
 
