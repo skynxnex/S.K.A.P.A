@@ -16,6 +16,9 @@ public class Test {
 		
 	}
 
+<<<<<<< HEAD
 }
 
 //fneioafea
+=======
+>>>>>>> branch 'refs/heads/master' of https://nli75@github.com/skynxnex/S.K.A.P.A.git
