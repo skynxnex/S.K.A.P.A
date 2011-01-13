@@ -42,16 +42,38 @@ public class StartClass {
 			
 			pbitem.description = keyboard.next();
 			
-			System.out.println("Du har skapat ett PbItem\n" +
-					"\nNAME: "+pbitem.name +
-					"\nID: "+pbitem.dbid +
-					"\nPRIO: "+pbitem.prio +
-					"\nEST: "+pbitem.est + 
-					"\nDESC: " +pbitem.description);
+//			System.out.println("Du har skapat ett PbItem\n" +
+//					"\nNAME: "+pbitem.name +
+//					"\nID: "+pbitem.dbid +
+//					"\nPRIO: "+pbitem.prio +
+//					"\nEST: "+pbitem.est + 
+//					"\nDESC: " +pbitem.description);
+//			
+//			System.out.println("OBJEKT ID: "+pbitem);
+
 			
-			System.out.println("OBJEKT ID: "+pbitem);
+			//här sparar vi det som vi precis har frågat efter
+			backlog.savePbItem(pbitem);
 			
-			bac
+			
+			//Det här är ett test för att loopa igenom alla items i mypbitems
+			
+			int myPbItemSize = backlog.MyPbItems.size();
+			
+
+			for(int i=0; i<myPbItemSize; i++){
+			
+				System.out.println(backlog.MyPbItems.get(i));
+				
+			}
+			
+			
+//			
+
+//				
+//			}
+			
+//			System.out.println(backlog);
 			
 			
 		}

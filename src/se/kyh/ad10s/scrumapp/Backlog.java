@@ -11,8 +11,8 @@ public class Backlog {
 	//method som kan hämta ett PbItemobjekt.
 	// som lägg detta objekt i arrayen. 
 //	För tillfället från StartClass
-	public void savePbItem(PbItem o){
-		MyPbItems.add(o);
+	public void savePbItem(PbItem pbitem){
+		MyPbItems.add(pbitem);
 	}
 	
 	
