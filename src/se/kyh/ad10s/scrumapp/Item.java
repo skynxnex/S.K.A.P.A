@@ -20,7 +20,7 @@ public class Item {
 		
 		//Så här ska det självklart inte fungera, men det skulle gå.
 		
-		System.out.println("Hej jag är klassen Item, du har kallat på mig.");
+		//System.out.println("Hej jag är klassen Item, du har kallat på mig.");
 	}
 
 }
