@@ -1,7 +1,7 @@
 package se.kyh.ad10s.scrumapp;
 
 public class Item {
-	int id;
+	int dbid;
 	String name;
 	String description;
 	int est;
@@ -19,6 +19,8 @@ public class Item {
 		//tills högsta id är nått.
 		
 		//Så här ska det självklart inte fungera, men det skulle gå.
+		
+		System.out.println("Hej jag är klassen Item, du har kallat på mig.");
 	}
 
 }
