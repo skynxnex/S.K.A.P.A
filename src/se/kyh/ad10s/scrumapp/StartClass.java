@@ -12,6 +12,8 @@ public class StartClass {
 		while (true) {
 
 			whiteboard.addPbItem();
+			
+			whiteboard.drawAllPbItem();
 
 		}
 
