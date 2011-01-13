@@ -7,13 +7,14 @@ public class PbItem extends Item{
 	//Knows its backlog - Oh but why?
 	int BacklogId;
 	
-//	//I PbItem kan du också hålla Tasks i en array
-//	ArrayList<Task> MyTasks = new ArrayList<Task>();
-//	
-//	//Tasksobjekt hämtas när ett nytt PbItem skapas i Whiteboard
-//	//Lägg in Task-objekt i arrayen MyTasks
-//	public void saveTask(Task myTask){
-//		MyTasks.add(myTask);
-//	}
+	//I PbItem kan du också hålla Tasks i en array.
+	//Ska senare in i DB istället
+	ArrayList<Task> MyTasks = new ArrayList<Task>();
+	
+	//Tasksobjekt hämtas när ett nytt PbItem skapas i Whiteboard
+	//Lägg in Task-objekt i arrayen MyTasks
+	public void saveTask(Task myTask){
+		MyTasks.add(myTask);
+	}
 
 }
