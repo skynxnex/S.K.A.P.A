@@ -51,6 +51,8 @@ public class StartClass {
 			
 			System.out.println("OBJEKT ID: "+pbitem);
 			
+			bac
+			
 			
 		}
 		//new nav-class
