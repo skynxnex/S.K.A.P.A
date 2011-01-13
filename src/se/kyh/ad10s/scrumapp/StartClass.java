@@ -24,9 +24,34 @@ public class StartClass {
 		
 		while (true) {
 			Scanner keyboard = new Scanner(System.in);
-			System.out.println("Lets create a new pbi.");
-			System.out.print("\n >> Player input lowest number: ");
-			min = keyboard.nextInt();
+			
+			PbItem pbitem = new PbItem();
+			
+			System.out.println("\nLets create a new pbi.");
+			System.out.print("\nFORMAT: id prio est");
+			
+			pbitem.dbid = keyboard.nextInt();
+			pbitem.prio = keyboard.nextInt();
+			pbitem.est = keyboard.nextInt();
+			
+			System.out.println("\nNu skulle det vara bra med ett namn");
+			
+			pbitem.name = keyboard.next();
+			
+			System.out.println("\nOm du skulle vilja beskriva itemet");
+			
+			pbitem.description = keyboard.next();
+			
+			System.out.println("Du har skapat ett PbItem\n" +
+					"\nNAME: "+pbitem.name +
+					"\nID: "+pbitem.dbid +
+					"\nPRIO: "+pbitem.prio +
+					"\nEST: "+pbitem.est + 
+					"\nDESC: " +pbitem.description);
+			
+			System.out.println("OBJEKT ID: "+pbitem);
+			
+			
 		}
 		//new nav-class
 		//frågar vad vi vill göra
