@@ -60,16 +60,24 @@ public class WhiteBoard {
 	}
 
 	public int intAllowed() {
-		int userInt = Integer.parseInt(receiveInput());
+		int userInt = 0;
 		//Lets catch all strings that can not be cast to an int here.
 		// if NumberFormatException true ask user for a new int input.
-		if(userInt>0){
-			
-		}else{
-			System.out.println("Must be written as a number. Example: \" 5 \". ");
-			//kör methoden igen
-			intAllowed();
+		
+		try
+		{
+
+			userInt = Integer.parseInt(receiveInput());
+
 		}
+		catch (NumberFormatException s)
+		{
+
+		System.out.println("\nExcpecting input to be a number\n input: ");
+		intAllowed();
+		
+		}
+
 		return userInt;
 	}
 
