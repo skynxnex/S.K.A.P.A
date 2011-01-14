@@ -1,23 +1,20 @@
 package se.kyh.ad10s.scrumapp;
-
+// This is the class for a Backlog
+// Here you save your PbItem-objekt in an Arraylist,
+// that eventually going to be a DB. 
+//
 import java.util.ArrayList;
 
 public class Backlog {
-	//skapa en array som kan ta emot PbItemsobjekt
+	//An array that holds PbItemobjekts. Eventually replaced by a DB.
 	ArrayList<PbItem> MyPbItems = new ArrayList<PbItem>();
 	
 	
-	//method som kan hämta ett PbItemobjekt.
-	// som lägg detta objekt i arrayen. Längre fram till DB.
-//	För tillfället från StartClass
+	//method that gets PbItemobjekt from Whiteboard and save it in the arraylist
+	// Eventually to a DB.
 	public void savePbItem(PbItem pbitem){
 		MyPbItems.add(pbitem);
 	}
 	
 	
-
-	
-	
-	
-
 }
