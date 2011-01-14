@@ -38,27 +38,6 @@ public class WhiteBoard {
 		
 		pbitem.description = receiveInput();
 		
-		// pbitem.prio = keyboard.nextInt();
-		// pbitem.est = keyboard.nextInt();
-		//
-		// System.out.println("\nNu skulle det vara bra med ett namn");
-		//
-		// pbitem.name = keyboard.next();
-		//
-		// System.out.println("\nOm du skulle vilja beskriva itemet");
-		//
-		// pbitem.description = keyboard.next();
-
-		// System.out.println("Du har skapat ett PbItem\n" +
-		// "\nNAME: "+pbitem.name +
-		// "\nID: "+pbitem.dbid +
-		// "\nPRIO: "+pbitem.prio +
-		// "\nEST: "+pbitem.est +
-		// "\nDESC: " +pbitem.description);
-		//
-		// System.out.println("OBJEKT ID: "+pbitem);
-
-		// här sparar vi det som vi precis har frågat efter
 		backlog.savePbItem(pbitem);
 
 	}
@@ -81,15 +60,22 @@ public class WhiteBoard {
 	}
 
 	public int intAllowed() {
-		int userInt = Integer.parseInt(receiveInput());
+		int userInt = 0;
 		//Lets catch all strings that can not be cast to an int here.
 		// if NumberFormatException true ask user for a new int input.
-		if(userInt>=0){
-			
-		}else{
-			System.out.println("Must be written as a number. Example: \" 5 \". ");
-			//kör methoden igen
-			intAllowed();
+		
+		try
+		{
+
+			userInt = Integer.parseInt(receiveInput());
+
+		}
+		catch (NumberFormatException s)
+		{
+
+		System.out.println("\nExcpecting input to be a number\n input: ");
+		intAllowed();
+		
 		}
 		return userInt;
 	}
