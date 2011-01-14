@@ -10,24 +10,26 @@ public class WhiteBoard {
 	}
 
 	public void addPbItem() {
-		Scanner keyboard = new Scanner(System.in);
 
 		PbItem pbitem = new PbItem();
 
-		System.out.println("\nLets create a new pbi.");
-		System.out.print("\nFORMAT: id prio est");
+		System.out
+				.println("\nYou are on your way to create a brand new Product Backlog Item.");
+		System.out.print("\nPlease input an ID(int): ");
 
-		pbitem.dbid = keyboard.nextInt();
-		pbitem.prio = keyboard.nextInt();
-		pbitem.est = keyboard.nextInt();
+		pbitem.dbid = intAllowed();
 
-		System.out.println("\nNu skulle det vara bra med ett namn");
-
-		pbitem.name = keyboard.next();
-
-		System.out.println("\nOm du skulle vilja beskriva itemet");
-
-		pbitem.description = keyboard.next();
+		System.out.println(pbitem.dbid);
+		// pbitem.prio = keyboard.nextInt();
+		// pbitem.est = keyboard.nextInt();
+		//
+		// System.out.println("\nNu skulle det vara bra med ett namn");
+		//
+		// pbitem.name = keyboard.next();
+		//
+		// System.out.println("\nOm du skulle vilja beskriva itemet");
+		//
+		// pbitem.description = keyboard.next();
 
 		// System.out.println("Du har skapat ett PbItem\n" +
 		// "\nNAME: "+pbitem.name +
@@ -47,10 +49,25 @@ public class WhiteBoard {
 		int myPbItemSize = backlog.MyPbItems.size();
 		for (int i = 0; i < myPbItemSize; i++) {
 
-//			System.out.println(backlog.MyPbItems.get(i));
+			// System.out.println(backlog.MyPbItems.get(i));
 			System.out.println(backlog.MyPbItems.get(i).dbid);
 		}
 
+	}
+
+	public int intAllowed() {
+		int userInt = Integer.parseInt(receiveInput());
+		//Lets catch all strings that can not be cast to an int here.
+		// if NumberFormatException true ask user for a new int input.
+		return userInt;
+
+	}
+
+	private String receiveInput() {
+		String string = " ";
+		Scanner scanner = new Scanner(System.in);
+		string = scanner.nextLine();
+		return string;
 	}
 
 }
