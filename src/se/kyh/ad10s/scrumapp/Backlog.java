@@ -8,7 +8,7 @@ public class Backlog {
 	
 	
 	//method som kan hämta ett PbItemobjekt.
-	// som lägg detta objekt i arrayen. 
+	// som lägg detta objekt i arrayen. Längre fram till DB.
 //	För tillfället från StartClass
 	public void savePbItem(PbItem pbitem){
 		MyPbItems.add(pbitem);

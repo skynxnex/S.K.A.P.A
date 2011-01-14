@@ -9,7 +9,7 @@ public class WhiteBoard {
 	public WhiteBoard(){
 		backlog = new Backlog();
 	}
-	
+	 
 	
 	
 	public void addPbItem() {
@@ -26,11 +26,11 @@ public class WhiteBoard {
 		
 		System.out.println("\nNu skulle det vara bra med ett namn");
 		
-		pbitem.name = keyboard.next();
+		pbitem.name = keyboard.nextLine();
 		
 		System.out.println("\nOm du skulle vilja beskriva itemet");
 		
-		pbitem.description = keyboard.next();
+		pbitem.description = keyboard.nextLine();
 		
 //		System.out.println("Du har skapat ett PbItem\n" +
 //				"\nNAME: "+pbitem.name +
