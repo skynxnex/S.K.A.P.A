@@ -38,27 +38,6 @@ public class WhiteBoard {
 		
 		pbitem.description = receiveInput();
 		
-		// pbitem.prio = keyboard.nextInt();
-		// pbitem.est = keyboard.nextInt();
-		//
-		// System.out.println("\nNu skulle det vara bra med ett namn");
-		//
-		// pbitem.name = keyboard.next();
-		//
-		// System.out.println("\nOm du skulle vilja beskriva itemet");
-		//
-		// pbitem.description = keyboard.next();
-
-		// System.out.println("Du har skapat ett PbItem\n" +
-		// "\nNAME: "+pbitem.name +
-		// "\nID: "+pbitem.dbid +
-		// "\nPRIO: "+pbitem.prio +
-		// "\nEST: "+pbitem.est +
-		// "\nDESC: " +pbitem.description);
-		//
-		// System.out.println("OBJEKT ID: "+pbitem);
-
-		// här sparar vi det som vi precis har frågat efter
 		backlog.savePbItem(pbitem);
 
 	}
