@@ -1,4 +1,8 @@
 package se.kyh.ad10s.scrumapp;
+// This is the "Whiteboard".
+// You communicate thru a scanner what you want to see.
+// In this class you can create or chose a backlog with PbItems and
+// a Sprint in witch you can chose your PbItems and create Tasks from them 
 
 import java.util.Scanner;
 
