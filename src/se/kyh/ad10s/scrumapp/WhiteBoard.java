@@ -22,7 +22,7 @@ public class WhiteBoard {
 	}
 
 	public WhiteBoard() {
-
+		
 	}
 
 //	// a method to list all existing sprints
