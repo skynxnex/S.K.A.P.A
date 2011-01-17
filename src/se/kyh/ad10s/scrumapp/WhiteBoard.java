@@ -17,12 +17,14 @@ package se.kyh.ad10s.scrumapp;
 public class WhiteBoard {
 
 	public static void main(String[] args) {
-		WhiteBoard whiteboard = new WhiteBoard();
-
-	}
-
-	public WhiteBoard() {
+		Backlog backlog = new Backlog();
 		
+		backlog.createBacklog();
+		while(true){
+		backlog.addPbItem();
+		backlog.drawAllPbItem();
+		}
+
 	}
 
 //	// a method to list all existing sprints
