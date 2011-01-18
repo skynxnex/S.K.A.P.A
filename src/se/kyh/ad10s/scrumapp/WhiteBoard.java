@@ -1,5 +1,8 @@
 package se.kyh.ad10s.scrumapp;
 
+import java.util.ArrayList;
+import java.util.Scanner;
+
 // This is the "Whiteboard".
 //Scrumapplication.java 
 //Created by:
@@ -13,23 +16,41 @@ package se.kyh.ad10s.scrumapp;
 // In this class you can create or chose a backlog with PbItems and
 // a Sprint in witch you can chose your PbItems and create Tasks from them 
 
-
 public class WhiteBoard {
+	// ArrayList<ProductBacklogs> ProductBacklogs = new
+	// ArrayList<ProductBacklogs>();
 
-	public static void main(String[] args) {
-		Backlog backlog = new Backlog();
+	public void whiteBoardMenu() {
 		
-		backlog.createBacklog();
-		while(true){
-		backlog.addPbItem();
-		backlog.drawAllPbItem();
+		System.out.println("WHITEBOARDMENU:");
+		System.out.println(" - To access backlog-menu, input: \"backlog\" ");
+		String BacklogMenuOption = "backlog";
+		String SprintMenuOption = "sprint";
+		
+		String userInput = whiteBoardScanner();
+		
+		if (userInput.equals(BacklogMenuOption)) {
+			Backlog backlog = new Backlog();
+			backlog.backlogMenu();
+		} else if(userInput.equals(SprintMenuOption)){
+//			Sprint sprint = new Sprint();
+//			sprint.sprintMenu();
+		} else {
+			System.out.println("Your input did not match any of our menu options.");
 		}
-
+		whiteBoardMenu();
 	}
 
-//	// a method to list all existing sprints
-//	public void listSprints(){
-//	Sprint presentSprint = new Sprint;
-//	}
-
+	public String whiteBoardScanner() {
+		String string = " ";
+		Scanner scanner = new Scanner(System.in);
+		string = scanner.nextLine();
+		return string;
+	}
 }
+
+// // a method to list all existing sprints
+// public void listSprints(){
+// Sprint presentSprint = new Sprint;
+// }
+
