@@ -1,7 +1,7 @@
 package se.kyh.ad10s.scrumapp;
 //Scrumapplication.java 
 //Created by:
-//Pontus Alm, Andreas Engström, Konrad Persson, Sebastian Kellgren, Anneli Halld'n
+//Pontus Alm, Andreas Engstrï¿½m, Konrad Persson, Sebastian Kellgren, Anneli Halld'n
 //Under projektname: S.K.A.P.A
 //
 //This is where the application starts running
