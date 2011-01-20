@@ -4,18 +4,30 @@ package se.kyh.ad10s.scrumapp;
 // Here you save your PbItem-objekt in an Arraylist,
 // that eventually going to be a DB. 
 //
+import java.sql.PreparedStatement;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Scanner;
 
 public class Backlog {
 	ArrayList<PbItem> MyPbItems = new ArrayList<PbItem>();
+	int blid;
+	String blname;
+	String bldescription;
 
 	// An array that holds PbItemobjekts. Eventually replaced by a DB.
 
 	// method that gets PbItemobjekt from Whiteboard and save it in the
 	// arraylist
 	// Eventually to a DB.
+	
+	public Backlog() {
+		// get name from user
+		// get description from user
+		// save bl to db
+		// load same bl from db
+		
+	}
 
 	public void backlogMenu() {
 		HashMap<String, String> menuMap = new HashMap<String, String>();
@@ -47,9 +59,12 @@ public class Backlog {
 	public void addPbItem() {
 
 		PbItem pbitem = new PbItem();
+		
+		System.out.print("NAME: ");
+		pbitem.name = backlogScanner();
 
-		System.out.print("\nID: ");
-		pbitem.dbid = intAllowed();
+		System.out.print("\nDESCRIPTION: ");
+		pbitem.description = backlogScanner();
 
 		System.out.print("EST: ");
 		pbitem.est = intAllowed();
@@ -57,19 +72,36 @@ public class Backlog {
 		System.out.print("PRIO: ");
 		pbitem.prio = intAllowed();
 
-		System.out.print("NAME: ");
-		pbitem.name = backlogScanner();
-
-		System.out.print("\nDESCRIPTION: ");
-		pbitem.description = backlogScanner();
+		
 
 		// Saving item in current opened backlog
-		savePbItem(pbitem);
+		sendPBItemToDB(pbitem);
 
 	}
 
-	public void savePbItem(PbItem pbitem) {
-		MyPbItems.add(pbitem);
+	public void sendPBItemToDB(PbItem pbitem) {
+		try {
+			PreparedStatement s = DbManager.getConnection().prepareStatement(
+										"INSERT INTO PBItems (	PBItemName, " +
+																"PBItemDescription, " +
+																"PBItemEST," +
+																"PBItemPrio," +
+																"PBItemBacklogId) " +
+										"VALUES (?, ?, ?, ?, ?)"
+											);
+			s.setString(1, pbitem.name);
+			s.setString(2, pbitem.description);
+			s.setInt(3, pbitem.est);
+			s.setInt(4, pbitem.prio);
+			
+			
+			s.executeUpdate();
+			
+			s.close();
+			
+		}  catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	public int intAllowed() {
