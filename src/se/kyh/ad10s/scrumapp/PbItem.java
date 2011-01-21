@@ -22,6 +22,7 @@ public class PbItem extends Item{
 	ArrayList<Task> MyTasks = new ArrayList<Task>();
 	
 	public void createNewPbItem() {
+		// Input section goes in new input class
 		System.out.print("NAME: ");
 		this.name = backlogScanner();
 
