@@ -17,35 +17,48 @@ import java.util.Scanner;
 // a Sprint in witch you can chose your PbItems and create Tasks from them 
 
 public class WhiteBoard {
-	// ArrayList<ProductBacklogs> ProductBacklogs = new
-	// ArrayList<ProductBacklogs>();
+	ArrayList<Backlog> MyBacklogs = new ArrayList<Backlog>();
 
 	public void whiteBoardMenu() {
 		
 		System.out.println("WHITEBOARDMENU:");
 		System.out.println(" - To access backlog-menu, input: \"backlog\" ");
+//		System.out.println(" - To access a previous created backlog");
 		String BacklogMenuOption = "backlog";
-		String SprintMenuOption = "sprint";
+//		String SprintMenuOption = "sprint";
+		
 		
 		String userInput = whiteBoardScanner();
 		
 		if (userInput.equals(BacklogMenuOption)) {
 			Backlog backlog = new Backlog();
+			saveBacklog(backlog);
 			backlog.backlogMenu();
-		} else if(userInput.equals(SprintMenuOption)){
+//		} else if(userInput.equals(SprintMenuOption)){
 //			Sprint sprint = new Sprint();
 //			sprint.sprintMenu();
 		} else {
 			System.out.println("Your input did not match any of our menu options.");
 		}
+
+//		addBacklogToMyBacklogs(backlog);
+		
 		whiteBoardMenu();
 	}
+
+//	private void addBacklogToMyBacklogs(Object o) {
+//		MyBacklogs.add(Object o);
+//	}
 
 	public String whiteBoardScanner() {
 		String string = " ";
 		Scanner scanner = new Scanner(System.in);
 		string = scanner.nextLine();
 		return string;
+	}
+	
+	public void saveBacklog(Backlog backlog) {
+		MyBacklogs.add(backlog);
 	}
 }
 

@@ -10,6 +10,7 @@ import java.util.HashMap;
 import java.util.Scanner;
 
 public class Backlog {
+	String BacklogName;
 	ArrayList<PbItem> MyPbItems = new ArrayList<PbItem>();
 	int blid;
 	String blname;
@@ -30,19 +31,24 @@ public class Backlog {
 	}
 
 	public void backlogMenu() {
-		HashMap<String, String> menuMap = new HashMap<String, String>();
-		menuMap.put("new", "MyNewString");
-		menuMap.put("n", "MyNewString");
-		menuMap.put("NEW", "MyNewString");
-
-		menuMap.get("n");
+//		HashMap<String, String> menuMap = new HashMap<String, String>();
+//		menuMap.put("new", "MyNewString");
+//		menuMap.put("n", "MyNewString");
+//		menuMap.put("NEW", "MyNewString");
+//
+//		menuMap.get("n");
 		
 		String newBacklogOption = "new";
 		String getBacklogOption = "get";
-		while (true) {
+		String doneBacklogOption = "done";
+		
+		boolean exit = false;
+		
+		while (exit == false) {
 			System.out.println("BACKLOGMENU: ");
 			System.out.println("To create a new backlog input \"new\"");
 			System.out.println("To access you existing backlog input \"get\"");
+			System.out.println("To save your backlog in progress and go back to WHITEBOARDMENU inpu \"done\"");
 			
 			String userInput = backlogScanner();
 			
@@ -50,10 +56,17 @@ public class Backlog {
 				addPbItem();
 			} else if (userInput.equals(getBacklogOption)) {
 				drawAllPbItem();
+			} else if (userInput.equals(doneBacklogOption)){
+				addBacklogToMyBacklogs(MyPbItems);
+				exit = true;
 			} else {
 				System.out.println("Your input did not match our menu options");
 			}
 		}
+	}
+
+	private void addBacklogToMyBacklogs(Object o) {
+		
 	}
 
 	public void addPbItem() {
@@ -147,5 +160,7 @@ public class Backlog {
 		string = scanner.nextLine();
 		return string;
 	}
+
+}
 
 }
