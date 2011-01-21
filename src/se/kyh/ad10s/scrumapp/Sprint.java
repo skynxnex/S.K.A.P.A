@@ -2,53 +2,38 @@ package se.kyh.ad10s.scrumapp;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.List;
 import java.util.Scanner;
-import java.sql.PreparedStatement;
-import java.sql.Date;
 
 public class Sprint {
-	static Scanner indata = new Scanner(System.in);
-	static Calendar startDate = Calendar.getInstance();
-	static Calendar endDate = Calendar.getInstance();
-	static ArrayList<PbItem> SprintBacklog = new ArrayList<PbItem>();
-
-	public static void main(String[] args) {
-		Backlog bl = new Backlog();
-		bl.addPbItem();
+	public int sprintid = 1;
+	private Scanner indata = new Scanner(System.in);
+	public Calendar startDate = Calendar.getInstance();
+	public Calendar endDate = Calendar.getInstance();
+	private List<PbItem> list = new ArrayList<PbItem>();
+	
+	public void newSprint() {
+		setStartDate();
+		setEndDate();
+		this.sprintid = DataAccessObject.makeNewSprint(startDate, endDate);
 	}
 
-	// Lägg till Items i sprintBL
-	public static void addItemToSprintBacklog(PbItem pbitem) {
-		SprintBacklog.add(pbitem);
-		// Lägga till tillhörighet i databas
-	}
-
-	// Lista alla items i sprintbl
-	public static void listAllSprintBacklogItems() {
-		// Gets the length of MyPbItems-array
-		int arrayLength = SprintBacklog.size();
-		// Loops through the whole MyPbItems-array
+	public void listAllSprintBacklogItems() {
+		list = DataAccessObject.getAllItemsInSprint(this.sprintid);
+		int arrayLength = list.size();
 		for (int i = 0; i < arrayLength; i++) {
-			// Prints every PbItem data
 			System.out.println("Index nr " + i);
-			System.out.print("\nID: " + SprintBacklog.get(i).dbid);
-			System.out.print(" NAME: " + SprintBacklog.get(i).name);
-			System.out.println("\nDESCRIPTION:\n "
-					+ SprintBacklog.get(i).description);
-			System.out.print("\nEST: " + SprintBacklog.get(i).est);
-			System.out.print("      PRIO: " + SprintBacklog.get(i).prio);
+			System.out.print("\nID: " + list.get(i).dbid);
+			System.out.print(" NAME: " + list.get(i).name);
+			System.out.println("\nDESCRIPTION:\n " + list.get(i).description);
+			System.out.print("\nEST: " + list.get(i).est);
+			System.out.print("      PRIO: " + list.get(i).prio);
 
 			System.out.println("\n---");
 		}
 	}
 
-	// ta bort items i sprintbl
-	public static void removeItemFromSprintBacklog(int index) {
-		SprintBacklog.remove(index);
-		// ta bort tillhörighet i databas
-	}
-
-	public static void setStartDate() {
+	private void setStartDate() {
 		System.out.println("Input data for start of sprint");
 		int year = getYear();
 		int month = getMonth();
@@ -56,7 +41,7 @@ public class Sprint {
 		startDate.set(year, month, day);
 	}
 
-	public static void setEndDate() {
+	private void setEndDate() {
 		System.out.println("Input data for end of sprint");
 		int year = getYear();
 		int month = getMonth();
@@ -64,11 +49,8 @@ public class Sprint {
 		endDate.set(year, month, day);
 	}
 
-	public static int intAllowed(String input) {
+	private int intAllowed(String input) {
 		int userInt = 0;
-		// Lets catch all strings that can not be cast to an int here.
-		// if NumberFormatException true ask user for a new int input.
-
 		try {
 			userInt = Integer.parseInt(input);
 		} catch (NumberFormatException s) {
@@ -79,13 +61,13 @@ public class Sprint {
 		return userInt;
 	}
 
-	private static String receiveInput() {
+	private String receiveInput() {
 		String string = " ";
 		string = indata.nextLine();
 		return string;
 	}
 
-	private static int getYear() {
+	private int getYear() {
 		boolean test = false;
 		int input = 0;
 		System.out.println("Input year: ");
@@ -98,7 +80,7 @@ public class Sprint {
 		return input;
 	}
 
-	private static int getMonth() {
+	private int getMonth() {
 		boolean test = false;
 		int input = 0;
 		System.out.println("Input month: ");
@@ -111,7 +93,7 @@ public class Sprint {
 		return input;
 	}
 
-	private static int getDay(int year, int month) {
+	private int getDay(int year, int month) {
 		boolean test = false;
 		int input = 0;
 		System.out.println("Input day: ");
@@ -124,34 +106,34 @@ public class Sprint {
 		return input;
 	}
 
-	private static boolean checkValidYear(int value) {
+	private boolean checkValidYear(int value) {
 		Calendar cal = Calendar.getInstance();
 		int year = cal.get(Calendar.YEAR);
 		if (value < year) {
-			System.out.println("Felaktigt årtal");
+			System.out.println("Year not allowed");
 			return false;
 		} else {
 			return true;
 		}
 	}
 
-	private static boolean checkValidDay(int input, int year, int month) {
+	private boolean checkValidDay(int input, int year, int month) {
 		Calendar cal = Calendar.getInstance();
 		cal.set(year, month, input);
 		int days = cal.getActualMaximum(Calendar.DAY_OF_MONTH);
 		if (input <= days && input > 0) {
 			return true;
 		} else {
-			System.out.println("Felaktigt dag");
+			System.out.println("Day not allowed");
 			return false;
 		}
 	}
 
-	private static boolean checkValidMonth(int input) {
+	private boolean checkValidMonth(int input) {
 		if (input < 12 && input >= 0) {
 			return true;
 		} else {
-			System.out.println("Felaktigt månad");
+			System.out.println("Month not allowed");
 			return false;
 		}
 	}
