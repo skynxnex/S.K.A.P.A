@@ -1,11 +1,14 @@
 package se.kyh.ad10s.scrumapp.menu;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Scanner;
 import java.util.Set;
 
+import se.kyh.ad10s.scrumapp.Backlog;
+import se.kyh.ad10s.scrumapp.Command;
 import se.kyh.ad10s.scrumapp.WhiteboardInvoker;
 
 public class UserClient {
@@ -15,7 +18,11 @@ public class UserClient {
 
 	// OUTPUTS
 	public static void startMenuWelcome() {
-		System.out.println(Calendar.getInstance() + "\nWelcome to startmenu");
+		System.out.println(Calendar.getInstance().getTime() + 
+				"\nWelcome to startmenu\n" +
+				"Input 1 to VIEW backlogs\n" +
+				"Input 2 to CREATE NEW backlog\n" +
+				"Input 3 to DELETE backlog");
 
 	}
 
@@ -26,15 +33,48 @@ public class UserClient {
 		
 	    while(i.hasNext()){
 	        Map.Entry me = (Map.Entry)i.next();
-	        System.out.println(me.getKey() + " runs the method " + me.getValue() );
+	        System.out.println(me.getKey());
 	      }
 
+	}
+	
+	public static void drawBacklog(ArrayList<Backlog> list) {
+		int numberOfBacklogs = list.size();
+
+		for (int i = 0; i < numberOfBacklogs; i++) {
+
+			System.out.print("\nID: " + list.get(i).blid + "\n");
+			System.out.println("\nNAME: " + list.get(i).backlogName + "\n");
+			System.out.println("DESCRIPTION: " + list.get(i).backlogDescription + "\n");
+
+		}
+		
 	}
 
 	// TODO sysos for all menus
 
 	// INPUTS
+	
+	//Check input against hm
+	public static void executeUserInput() {
+		String s = userInput();
+		executeCommand(s);
+	}
+	
+	public static void executeCommand(String s) {
+		Command c = getCommand(s);
+		if (c == null) {
+			return;
+		}
+		c.execute();
+	}
 
+	public static Command getCommand(String strCommand) {
+		return WhiteboardInvoker.hm.get(strCommand);
+	}
+
+	
+	//Plain method for getting input
 	public static String userInput() {
 		String string = " ";
 		Scanner scanner = new Scanner(System.in);
@@ -63,5 +103,9 @@ public class UserClient {
 
 		return userInt;
 	}
+
+
+
+
 
 }

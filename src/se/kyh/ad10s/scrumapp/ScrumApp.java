@@ -13,8 +13,7 @@ public class ScrumApp {
 
 	public static void main(String[] args) {
 
-		MenuHolder menuHolder = new MenuHolder();
-		menuHolder.startMenu();
+		MenuHolder.startMenu();
 
 	}
 
