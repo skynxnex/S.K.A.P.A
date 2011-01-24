@@ -4,8 +4,7 @@ package se.kyh.ad10s.scrumapp;
 //It knows what PbItem it belongs to
 public class Task extends Item{
 	
-	//knows its id
-	private int PbItemid;
+	public int TaskPBItemId;
 	
 	
 	//Constructor that gets a PbItemid when a Taskobjekt is created in a Sprint. 
