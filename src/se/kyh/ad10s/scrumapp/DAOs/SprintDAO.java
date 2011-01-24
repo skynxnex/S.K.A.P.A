@@ -3,6 +3,7 @@ package se.kyh.ad10s.scrumapp.DAOs;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -11,8 +12,6 @@ import java.util.List;
 import se.kyh.ad10s.scrumapp.DbManager;
 import se.kyh.ad10s.scrumapp.PbItem;
 import se.kyh.ad10s.scrumapp.Sprint;
-
-import com.mysql.jdbc.Statement;
 
 public class SprintDAO {
 

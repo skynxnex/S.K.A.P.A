@@ -2,12 +2,11 @@ package se.kyh.ad10s.scrumapp.DAOs;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import se.kyh.ad10s.scrumapp.Backlog;
 import se.kyh.ad10s.scrumapp.DbManager;
-
-import com.mysql.jdbc.Statement;
 
 public class BacklogDAO {
 	

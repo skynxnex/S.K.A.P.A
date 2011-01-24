@@ -2,11 +2,10 @@ package se.kyh.ad10s.scrumapp.DAOs;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 
 import se.kyh.ad10s.scrumapp.DbManager;
 import se.kyh.ad10s.scrumapp.Task;
-
-import com.mysql.jdbc.Statement;
 
 public class TaskDAO {
 	/**
