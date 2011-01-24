@@ -38,6 +38,12 @@ public class BacklogDAO {
 		return list;
 	}
 	
+	/**
+	 * 
+	 * Creates a new backlog
+	 * Returns an id
+	 */
+	
 	public static int createNewBacklog(String backlogName, String backlogDescription) {
 		int blid = 0;
 		try {
@@ -59,6 +65,10 @@ public class BacklogDAO {
 		return blid;
 	}
 	
+	/**
+	 * Deletes a backlog from the database
+	 * arg: backlog ID
+	 */
 	public static void deleteBacklogFromDB (int blid) {
 		try {
 			PreparedStatement s = DbManager.getConnection().prepareStatement(

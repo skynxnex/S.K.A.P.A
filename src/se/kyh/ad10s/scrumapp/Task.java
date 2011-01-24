@@ -1,10 +1,8 @@
 package se.kyh.ad10s.scrumapp;
-//This is the class Task
-//It inherits from the superclass Item
-//It knows what PbItem it belongs to
+
 public class Task extends Item{
 	
-	public int TaskPBItemId;
+	public int taskPBItemId;
 	
 	
 	//Constructor that gets a PbItemid when a Taskobjekt is created in a Sprint. 

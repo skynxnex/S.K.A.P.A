@@ -13,11 +13,12 @@ public class Sprint {
 	public Calendar startDate = Calendar.getInstance();
 	public Calendar endDate = Calendar.getInstance();
 	private List<PbItem> list = new ArrayList<PbItem>();
+	public int sprintBacklogId;
 	
 	public void newSprint() {
-		setStartDate();
-		setEndDate();
-		this.sprintid = SprintDAO.makeNewSprint(startDate, endDate);
+//		setStartDate();
+//		setEndDate();
+//		this.sprintid = SprintDAO.makeNewSprint(startDate, endDate);
 	}
 
 	public void listAllSprintBacklogItems() {
