@@ -16,7 +16,11 @@ public class UserClient {
 	public static boolean userInStartMenu = true;
 
 	// TODO Welcome to startmenu
-
+	public static String getInput(String string){
+		System.out.println(string);
+		String temp = userInput();
+		return temp;
+	}
 	// OUTPUTS
 	public static void startMenuWelcome() {
 		System.out.println(Calendar.getInstance().getTime()
@@ -102,16 +106,6 @@ public class UserClient {
 		}
 
 		return userInt;
-	}
-
-	public static void userCreateNewBacklogObject() {
-		System.out.println("Input a backlog NAME");
-		String userBacklogName = userInput();
-		System.out.println("Input a backlog DESCRIPTION");
-		String userBacklogDescription = userInput();
-		new
-
-		// TODO drawBacklog(CreatedBacklogId);
 	}
 
 }
