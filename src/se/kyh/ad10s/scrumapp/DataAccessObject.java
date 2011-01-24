@@ -3,12 +3,11 @@ package se.kyh.ad10s.scrumapp;
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.sql.Types;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
-
-import com.mysql.jdbc.Statement;
 
 public class DataAccessObject {
 

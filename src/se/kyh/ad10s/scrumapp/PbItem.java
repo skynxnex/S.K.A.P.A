@@ -10,10 +10,13 @@ public class PbItem extends Item{
 	
 	//Knows its backlog - Oh but why?
 	int BacklogId;
+	public int SprintId;
 	
 	//An array that holds Taskobjekts
 	//Will eventually be replaced by a DB.
 	ArrayList<Task> MyTasks = new ArrayList<Task>();
+
+	
 	
 	//Gets Taskobjekts when called
 	//Saves it in the arraylist. Eventually to a DB:
