@@ -10,6 +10,7 @@ import java.util.Set;
 import se.kyh.ad10s.scrumapp.Backlog;
 import se.kyh.ad10s.scrumapp.Command;
 import se.kyh.ad10s.scrumapp.WhiteboardInvoker;
+import se.kyh.ad10s.scrumapp.DAOs.BacklogDAO;
 
 public class UserClient {
 	public static boolean userInStartMenu = true;
@@ -38,7 +39,7 @@ public class UserClient {
 
 	}
 	
-	public static void drawBacklog(ArrayList<Backlog> list) {
+	public static void drawAllBacklogs(ArrayList<Backlog> list) {
 		int numberOfBacklogs = list.size();
 
 		for (int i = 0; i < numberOfBacklogs; i++) {
@@ -102,6 +103,19 @@ public class UserClient {
 		}
 
 		return userInt;
+	}
+
+	public static void userCreateNewBacklog() {
+		String backlogName = userInput();
+		String backlogDescription = userInput();
+		int CreatedBacklogId = BacklogDAO.createNewBacklog(backlogName, backlogDescription);
+		System.out.println("\nCreated backlog with the ID: " + CreatedBacklogId);
+		//TODO drawBacklog(CreatedBacklogId);
+	}
+
+	private static void drawBacklog(int createdBacklogId) {
+		// TODO Auto-generated method stub
+		
 	}
 
 

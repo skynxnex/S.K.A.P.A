@@ -17,7 +17,7 @@ public class DrawBacklogs implements Command {
 	@Override
 	public void execute() {
 		ArrayList<Backlog> list = BacklogDAO.getAllBacklogsFromDB();
-		UserClient.drawBacklog(list);
+		UserClient.drawAllBacklogs(list);
 
 
 	}
