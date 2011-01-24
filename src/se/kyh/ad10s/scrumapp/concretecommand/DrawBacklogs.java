@@ -9,10 +9,6 @@ import se.kyh.ad10s.scrumapp.menu.UserClient;
 
 public class DrawBacklogs implements Command {
 
-	public void draw() {
-		System.out.println("drawed");
-		// TODO Auto-generated method stub
-	}
 
 	@Override
 	public void execute() {

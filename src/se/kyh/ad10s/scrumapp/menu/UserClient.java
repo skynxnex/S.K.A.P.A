@@ -19,11 +19,10 @@ public class UserClient {
 
 	// OUTPUTS
 	public static void startMenuWelcome() {
-		System.out.println(Calendar.getInstance().getTime() + 
-				"\nWelcome to startmenu\n" +
-				"Input 1 to VIEW backlogs\n" +
-				"Input 2 to CREATE NEW backlog\n" +
-				"Input 3 to DELETE backlog");
+		System.out.println(Calendar.getInstance().getTime()
+				+ "\nWelcome to startmenu\n" + "Input 1 to VIEW backlogs\n"
+				+ "Input 2 to CREATE NEW backlog\n"
+				+ "Input 3 to DELETE backlog");
 
 	}
 
@@ -31,14 +30,14 @@ public class UserClient {
 
 		Set currentSet = WhiteboardInvoker.hm.entrySet();
 		Iterator i = currentSet.iterator();
-		
-	    while(i.hasNext()){
-	        Map.Entry me = (Map.Entry)i.next();
-	        System.out.println(me.getKey());
-	      }
+
+		while (i.hasNext()) {
+			Map.Entry me = (Map.Entry) i.next();
+			System.out.println(me.getKey());
+		}
 
 	}
-	
+
 	public static void drawAllBacklogs(ArrayList<Backlog> list) {
 		int numberOfBacklogs = list.size();
 
@@ -46,22 +45,23 @@ public class UserClient {
 
 			System.out.print("\nID: " + list.get(i).blid + "\n");
 			System.out.println("\nNAME: " + list.get(i).backlogName + "\n");
-			System.out.println("DESCRIPTION: " + list.get(i).backlogDescription + "\n");
+			System.out.println("DESCRIPTION: " + list.get(i).backlogDescription
+					+ "\n");
 
 		}
-		
+
 	}
 
 	// TODO sysos for all menus
 
 	// INPUTS
-	
-	//Check input against hm
+
+	// Check input against hm
 	public static void executeUserInput() {
 		String s = userInput();
 		executeCommand(s);
 	}
-	
+
 	public static void executeCommand(String s) {
 		Command c = getCommand(s);
 		if (c == null) {
@@ -74,8 +74,7 @@ public class UserClient {
 		return WhiteboardInvoker.hm.get(strCommand);
 	}
 
-	
-	//Plain method for getting input
+	// Plain method for getting input
 	public static String userInput() {
 		String string = " ";
 		Scanner scanner = new Scanner(System.in);
@@ -105,21 +104,14 @@ public class UserClient {
 		return userInt;
 	}
 
-	public static void userCreateNewBacklog() {
-		String backlogName = userInput();
-		String backlogDescription = userInput();
-		int CreatedBacklogId = BacklogDAO.createNewBacklog(backlogName, backlogDescription);
-		System.out.println("\nCreated backlog with the ID: " + CreatedBacklogId);
-		//TODO drawBacklog(CreatedBacklogId);
+	public static void userCreateNewBacklogObject() {
+		System.out.println("Input a backlog NAME");
+		String userBacklogName = userInput();
+		System.out.println("Input a backlog DESCRIPTION");
+		String userBacklogDescription = userInput();
+		new
+
+		// TODO drawBacklog(CreatedBacklogId);
 	}
-
-	private static void drawBacklog(int createdBacklogId) {
-		// TODO Auto-generated method stub
-		
-	}
-
-
-
-
 
 }
