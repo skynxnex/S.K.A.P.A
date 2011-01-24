@@ -3,15 +3,15 @@ package se.kyh.ad10s.scrumapp;
 //It is a abstract class that holds the common members
 //
 public class Item {
-	int dbid;
-	String name;
-	String description;
-	int est;
-	int prio;
+	public int dbid;
+	public String name;
+	public String description;
+	public int est;
+	public int prio;
 	
 	//a constructor to see if its connected 
 	public Item(){
-		//System.out.println("Hej jag är klassen Item, du har kallat på mig.");
+		//System.out.println("Hej jag ï¿½r klassen Item, du har kallat pï¿½ mig.");
 	}
 
 }
