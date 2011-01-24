@@ -11,7 +11,7 @@ public class StartMenu {
 			//List menuoptions (static or dynamic) from startmenuhashmap or from static list
 			WhiteboardInvoker.createStartMenuHashMap();
 			UserClient.drawCurrentHashMap();
-			UserClient.userInput();
+			UserClient.executeUserInput();
 		}
 		
 	}
