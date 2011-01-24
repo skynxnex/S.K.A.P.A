@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Types;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import se.kyh.ad10s.scrumapp.DbManager;
@@ -35,18 +34,18 @@ public class SprintDAO {
 
 	/**
 	 * Makes a new Sprint
-	 * args: Calendar Startdate, Calendar Enddate, BacklogID
+	 * args: Sprintobject, Backlog ID
 	 * returns a sprintID
 	 */
-	public static int makeNewSprint(Calendar startDate, Calendar endDate, int SprintBacklogId) {
+	public static int makeNewSprint(Sprint sprint, int blid) {
 		int sprintid = 0;
 		try {
 			PreparedStatement s = DbManager.getConnection().prepareStatement(
 					"INSERT INTO Sprint (	SprintStartDate, " + "SprintEndDate, "+"SprintBacklogId)"
 							+ "VALUES (?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
-			s.setDate(1, new Date(startDate.getTimeInMillis()));
-			s.setDate(2, new Date(endDate.getTimeInMillis()));
-			s.setInt(3, SprintBacklogId);
+			s.setDate(1, new Date(sprint.startDate.getTimeInMillis()));
+			s.setDate(2, new Date(sprint.endDate.getTimeInMillis()));
+			s.setInt(3, blid);
 			s.executeUpdate();
 			ResultSet rs = s.getGeneratedKeys();
 			rs.first();
