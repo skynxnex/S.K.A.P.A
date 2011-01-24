@@ -4,17 +4,14 @@ package se.kyh.ad10s.scrumapp;
 // Here you save your PbItem-objekt in an Arraylist,
 // that eventually going to be a DB. 
 //
-import java.sql.PreparedStatement;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Scanner;
 
 public class Backlog {
-	String BacklogName;
+	public String backlogName;
 	ArrayList<PbItem> MyPbItems = new ArrayList<PbItem>();
-	int blid;
-	String blname;
-	String bldescription;
+	public int blid;
+	public String backlogDescription;
 
 	// An array that holds PbItemobjekts. Eventually replaced by a DB.
 
@@ -122,6 +119,20 @@ public class Backlog {
 			System.out.println("\n---");
 		}
 
+	}
+	
+	public void drawPbItem(PbItem pbitem) {
+		
+		
+		
+			System.out.print("\nID: " + pbitem.dbid);
+			System.out.print(" NAME: " + pbitem.name);
+			System.out.println("\nDESCRIPTION:\n "
+					+ pbitem.description);
+			System.out.print("\nEST: " + pbitem.est);
+			System.out.print("      PRIO: " + pbitem.prio);
+
+			System.out.println("\n---");	
 	}
 
 	public String backlogScanner() {

@@ -5,21 +5,24 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Scanner;
 
+import se.kyh.ad10s.scrumapp.DAOs.SprintDAO;
+
 public class Sprint {
-	public int sprintid = 1;
+	public int sprintid;
 	private Scanner indata = new Scanner(System.in);
 	public Calendar startDate = Calendar.getInstance();
 	public Calendar endDate = Calendar.getInstance();
 	private List<PbItem> list = new ArrayList<PbItem>();
+	public int sprintBacklogId;
 	
 	public void newSprint() {
-		setStartDate();
-		setEndDate();
-		this.sprintid = DataAccessObject.makeNewSprint(startDate, endDate);
+//		setStartDate();
+//		setEndDate();
+//		this.sprintid = SprintDAO.makeNewSprint(startDate, endDate);
 	}
 
 	public void listAllSprintBacklogItems() {
-		list = DataAccessObject.getAllItemsInSprint(this.sprintid);
+		list = SprintDAO.getAllItemsInSprint(this.sprintid);
 		int arrayLength = list.size();
 		for (int i = 0; i < arrayLength; i++) {
 			System.out.println("Index nr " + i);
