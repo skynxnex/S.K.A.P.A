@@ -12,7 +12,8 @@ import com.mysql.jdbc.Statement;
 public class BacklogDAO {
 	
 	/**
-	 * Gets all Backlogs from database, returns arraylist with objects.
+	 * Gets all Backlogs from database, 
+	 * @return arraylist with objects.
 	 * 
 	 */
 	
@@ -39,13 +40,12 @@ public class BacklogDAO {
 	}
 	
 	/**
-	 * 
 	 * Creates a new backlog
-	 * arg: Backlog object
-	 * Returns an id
+	 * @param Backlog object
+	 * @return backlog object
 	 */
 	
-	public static int createNewBacklog(Backlog bl) {
+	public static Backlog createNewBacklog(Backlog bl) {
 		int blid = 0;
 		try {
 			PreparedStatement s = DbManager.getConnection().prepareStatement(
@@ -63,7 +63,8 @@ public class BacklogDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return blid;
+		bl.blid = blid;
+		return bl;
 	}
 	
 	/**
