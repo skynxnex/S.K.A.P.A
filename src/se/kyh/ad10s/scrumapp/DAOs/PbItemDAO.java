@@ -2,11 +2,13 @@ package se.kyh.ad10s.scrumapp.DAOs;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
+import java.sql.Types;
 
 import se.kyh.ad10s.scrumapp.DbManager;
 import se.kyh.ad10s.scrumapp.PbItem;
 import se.kyh.ad10s.scrumapp.Task;
+
+import com.mysql.jdbc.Statement;
 
 public class PbItemDAO {
 	public static int sendPBItemToDB(PbItem pbitem) {
@@ -53,10 +55,8 @@ public class PbItemDAO {
 				pbitem.BacklogId = rs.getInt("PBItemBacklogId");
 			}
 			s.close();
-
 		} catch (Exception e) {
 			e.printStackTrace();
-
 		}
 		return pbitem;
 	}
@@ -68,17 +68,16 @@ public class PbItemDAO {
 						"DELETE FROM PBItems WHERE PBItemId ="+pbId+"");
 				s.executeUpdate();
 				s.close();
-
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 	}
 	
-	public static void addTaskToPbItem(Task task, int taskId) {
+	public static void addTaskToPbItem(Task task, int Pbitemid) {
 		try {
 			PreparedStatement s = DbManager.getConnection().prepareStatement(
 					"UPDATE Tasks SET TaskPBItemId = ? WHERE TaskId=?");
-			s.setInt(1, taskId);
+			s.setInt(1, Pbitemid);
 			s.setInt(2, task.dbid);
 			s.executeUpdate();
 			s.close();
@@ -86,6 +85,18 @@ public class PbItemDAO {
 			e.printStackTrace();
 		}
 	}
-	//Add task to pbitem
+	
+	public static void removeTaskFromPbItem(Task task) {
+		try {
+			PreparedStatement s = DbManager.getConnection().prepareStatement(
+					"UPDATE Tasks SET TaskPBItemId = ? WHERE TaskId=?");
+			s.setNull(1, Types.NULL);
+			s.setInt(2, task.dbid);
+			s.executeUpdate();
+			s.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
 
 }

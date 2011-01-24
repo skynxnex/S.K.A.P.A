@@ -2,11 +2,12 @@ package se.kyh.ad10s.scrumapp.DAOs;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.sql.Statement;
 import java.util.ArrayList;
 
 import se.kyh.ad10s.scrumapp.Backlog;
 import se.kyh.ad10s.scrumapp.DbManager;
+
+import com.mysql.jdbc.Statement;
 
 public class BacklogDAO {
 	
@@ -37,6 +38,12 @@ public class BacklogDAO {
 		return list;
 	}
 	
+	/**
+	 * 
+	 * Creates a new backlog
+	 * Returns an id
+	 */
+	
 	public static int createNewBacklog(String backlogName, String backlogDescription) {
 		int blid = 0;
 		try {
@@ -58,6 +65,10 @@ public class BacklogDAO {
 		return blid;
 	}
 	
+	/**
+	 * Deletes a backlog from the database
+	 * arg: backlog ID
+	 */
 	public static void deleteBacklogFromDB (int blid) {
 		try {
 			PreparedStatement s = DbManager.getConnection().prepareStatement(

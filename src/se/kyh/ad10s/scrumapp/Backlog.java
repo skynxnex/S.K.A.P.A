@@ -82,36 +82,6 @@ public class Backlog {
 		System.out.print("PRIO: ");
 		pbitem.prio = intAllowed();
 
-		
-
-		// Saving item in current opened backlog
-		sendPBItemToDB(pbitem);
-
-	}
-
-	public void sendPBItemToDB(PbItem pbitem) {
-		try {
-			PreparedStatement s = DbManager.getConnection().prepareStatement(
-										"INSERT INTO PBItems (	PBItemName, " +
-																"PBItemDescription, " +
-																"PBItemEST," +
-																"PBItemPrio," +
-																"PBItemBacklogId) " +
-										"VALUES (?, ?, ?, ?, ?)"
-											);
-			s.setString(1, pbitem.name);
-			s.setString(2, pbitem.description);
-			s.setInt(3, pbitem.est);
-			s.setInt(4, pbitem.prio);
-			
-			
-			s.executeUpdate();
-			
-			s.close();
-			
-		}  catch (Exception e) {
-			e.printStackTrace();
-		}
 	}
 
 	public int intAllowed() {
@@ -174,4 +144,3 @@ public class Backlog {
 
 }
 
-//}
