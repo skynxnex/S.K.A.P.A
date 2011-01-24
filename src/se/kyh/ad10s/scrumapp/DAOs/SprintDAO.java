@@ -17,7 +17,7 @@ public class SprintDAO {
 
 	/**
 	 * Adds a PbItem to the Sprint
-	 * args: PbItem object, Sprint ID
+	 * @param PbItem object, Sprint ID
 	 */
 	public static void addItemToSprintBacklog(PbItem pbitem, int sprintid) {
 		try {
@@ -34,10 +34,10 @@ public class SprintDAO {
 
 	/**
 	 * Makes a new Sprint
-	 * args: Sprintobject, Backlog ID
-	 * returns a sprintID
+	 * @param Sprintobject, Backlog ID
+	 * @return Sprintobject
 	 */
-	public static int makeNewSprint(Sprint sprint, int blid) {
+	public static Sprint makeNewSprint(Sprint sprint, int blid) {
 		int sprintid = 0;
 		try {
 			PreparedStatement s = DbManager.getConnection().prepareStatement(
@@ -54,12 +54,13 @@ public class SprintDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return sprintid;
+		sprint.sprintid = sprintid;
+		return sprint;
 	}
 
 	/**
 	 * Gets all items from a certain sprint
-	 * returns an arraylist with pbitem objects
+	 * @return arraylist with pbitem objects
 	 */
 	public static List<PbItem> getAllItemsInSprint(int sprintid) {
 		List<PbItem> list = new ArrayList<PbItem>();
@@ -89,7 +90,7 @@ public class SprintDAO {
 
 	/**
 	 * Removes PbItems from a sprint
-	 * arg: PbItem id
+	 * @param PbItem id
 	 */
 	public void removeItemFromSprintBacklog(int id) {
 		try {

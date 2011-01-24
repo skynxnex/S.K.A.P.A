@@ -11,7 +11,13 @@ import se.kyh.ad10s.scrumapp.Task;
 import com.mysql.jdbc.Statement;
 
 public class PbItemDAO {
-	public static int sendPBItemToDB(PbItem pbitem) {
+	/**
+	 * Send PbItem to database
+	 * 
+	 * @param pbitem object
+	 * @return pbitem object
+	 */
+	public static PbItem sendPBItemToDB(PbItem pbitem) {
 		int blid = 0;
 		try {
 			PreparedStatement s = DbManager.getConnection().prepareStatement(
@@ -34,9 +40,15 @@ public class PbItemDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return blid;
+		pbitem.dbid = blid;
+		return pbitem;
 	}
 
+	/**
+	 * Gets a PbItem from database
+	 * @param PbItem id
+	 * @return PbItem object
+	 */
 	public static PbItem getPbItemFromDB(int id) {
 		PbItem pbitem = new PbItem();
 		try {
@@ -61,18 +73,26 @@ public class PbItemDAO {
 		return pbitem;
 	}
 
-	public static void deletePbItemFromDB(int pbId){
-		
-			try {
-				PreparedStatement s = DbManager.getConnection().prepareStatement(
-						"DELETE FROM PBItems WHERE PBItemId ="+pbId+"");
-				s.executeUpdate();
-				s.close();
-			} catch (Exception e) {
-				e.printStackTrace();
-			}
+	/**
+	 * Deletes PbItem from database
+	 * @param pbId
+	 */
+	public static void deletePbItemFromDB(int pbId) {
+		try {
+			PreparedStatement s = DbManager.getConnection().prepareStatement(
+					"DELETE FROM PBItems WHERE PBItemId =" + pbId + "");
+			s.executeUpdate();
+			s.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 	
+	/**
+	 * Adds task to PbItem
+	 * @param task object
+	 * @param Pbitem id
+	 */
 	public static void addTaskToPbItem(Task task, int Pbitemid) {
 		try {
 			PreparedStatement s = DbManager.getConnection().prepareStatement(
@@ -85,7 +105,11 @@ public class PbItemDAO {
 			e.printStackTrace();
 		}
 	}
-	
+
+	/**
+	 * Removes task from PbItem
+	 * @param task object
+	 */
 	public static void removeTaskFromPbItem(Task task) {
 		try {
 			PreparedStatement s = DbManager.getConnection().prepareStatement(
