@@ -15,9 +15,9 @@ public class WhiteboardInvoker {
 
 	public static void createStartMenuHashMap() {
 
-		hm.put("1", new DrawBacklogs());
-		hm.put("2", new CreateBacklog());
-		hm.put("3", new DeleteBacklog());
+		hm.put("VIEW", new DrawBacklogs());
+		hm.put("CREATE", new CreateBacklog());
+		hm.put("DELETE", new DeleteBacklog());
 
 	}
 

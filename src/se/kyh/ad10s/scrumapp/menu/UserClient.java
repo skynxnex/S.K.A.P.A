@@ -15,18 +15,11 @@ import se.kyh.ad10s.scrumapp.DAOs.BacklogDAO;
 public class UserClient {
 	public static boolean userInStartMenu = true;
 
-	// TODO Welcome to startmenu
-	public static String getInput(String string){
-		System.out.println(string);
-		String temp = userInput();
-		return temp;
-	}
 	// OUTPUTS
 	public static void startMenuWelcome() {
-		System.out.println(Calendar.getInstance().getTime()
-				+ "\nWelcome to startmenu\n" + "Input 1 to VIEW backlogs\n"
-				+ "Input 2 to CREATE NEW backlog\n"
-				+ "Input 3 to DELETE backlog");
+		System.out.println( // Calendar.getInstance().getTime()
+				"java:scrumapp\\start \n" + "VIEW          lets you view backlogs \n"
+						+ "CREATE        creates a new backlog \n" + "DELETE        delete a backlog");
 
 	}
 
@@ -46,12 +39,12 @@ public class UserClient {
 		int numberOfBacklogs = list.size();
 
 		for (int i = 0; i < numberOfBacklogs; i++) {
+System.out.println(" | ");
 
-			System.out.print("\nID: " + list.get(i).blid + "\n");
-			System.out.println("\nNAME: " + list.get(i).backlogName + "\n");
-			System.out.println("DESCRIPTION: " + list.get(i).backlogDescription
-					+ "\n");
-
+			System.out.print(" | ID: " + list.get(i).blid);
+			System.out.println("\n | NAME: " + list.get(i).backlogName);
+			System.out.println(" | DESCRIPTION: " + list.get(i).backlogDescription
+					+ "\n | \n");
 		}
 
 	}
@@ -77,6 +70,12 @@ public class UserClient {
 	public static Command getCommand(String strCommand) {
 		return WhiteboardInvoker.hm.get(strCommand);
 	}
+	//method for getting input and also output a message
+	public static String getInput(String string){
+		System.out.println(string);
+		String temp = userInput();
+		return temp;
+	}
 
 	// Plain method for getting input
 	public static String userInput() {
@@ -85,13 +84,15 @@ public class UserClient {
 		string = scanner.nextLine();
 		return string;
 	}
+	
+	
 
 	// TODO Functions for asking for specific input
 
 	// Lets catch all strings that can not be cast to an int here.
 	// if NumberFormatException true ask user for a new int input.
 
-	public int intAllowed() {
+	public static int intAllowed() {
 		int userInt = 0;
 
 		try {

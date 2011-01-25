@@ -11,7 +11,7 @@ public class CreateBacklog implements Command {
 
 	@Override
 	public void execute() {
-		backlogName = UserClient.getInput("Skriv in Backlog Namn");
+		backlogName = UserClient.getInput("backlog name:");
 		backlogDescription = UserClient.getInput("Backlog Description:");
 		Backlog bl = new Backlog();
 		bl.backlogName = backlogName;

@@ -18,7 +18,7 @@ public class DbManager {
 		
 		conn = DriverManager.getConnection(url, userName, password);
 		
-		System.out.println("Database connection established");
+		System.out.println("Database connection established\n");
 	}
 
 	public static Connection getConnection() throws Exception {
@@ -34,6 +34,7 @@ public class DbManager {
 				conn.close();
 				System.out.println("Database");
 			} catch (Exception e) {
+				
 			}
 		}
 	}
