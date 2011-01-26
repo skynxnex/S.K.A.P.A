@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Types;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import se.kyh.ad10s.scrumapp.DbManager;
@@ -120,8 +121,9 @@ public class SprintDAO {
 			while (rs.next()) {
 				Sprint sprint = new Sprint();
 				sprint.sprintid = rs.getInt("SprintId");
-				sprint.sprintid = rs.getInt("SprintStartDate");
-				sprint.sprintid = rs.getInt("SprintEndDate");
+				sprint.startDate.setTime(rs.getDate("SprintStartDate"));
+				sprint.endDate.setTime(rs.getDate("SprintEndDate"));
+				sprint.sprintBacklogId = rs.getInt("SprintBacklogId");
 				list.add(sprint);
 			}
 			s.close();
@@ -178,5 +180,26 @@ public class SprintDAO {
 
 		}
 		return list;
+	}
+	
+	public static Sprint getSprintFromDB (int sprintid) {
+		Sprint sprint = new Sprint();
+		try {
+			Statement s = (Statement) DbManager.getConnection()
+					.createStatement();
+			ResultSet rs = s
+					.executeQuery("SELECT * FROM `Sprint` WHERE SprintId ="
+							+ sprintid + "");
+			while (rs.next()) {
+				sprint.sprintid = rs.getInt("SprintId");
+				sprint.startDate.setTime(rs.getDate("SprintStartDate"));
+				sprint.endDate.setTime(rs.getDate("SprintEndDate"));
+				sprint.sprintBacklogId = rs.getInt("SprintBacklogId");
+			}
+			s.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return sprint;
 	}
 }
