@@ -2,6 +2,7 @@ package se.kyh.ad10s.scrumapp;
 
 import java.util.HashMap;
 
+import se.kyh.ad10s.scrumapp.concretecommand.ChooseBacklog;
 import se.kyh.ad10s.scrumapp.concretecommand.CreateBacklog;
 import se.kyh.ad10s.scrumapp.concretecommand.DeleteBacklog;
 import se.kyh.ad10s.scrumapp.concretecommand.DrawBacklogs;
@@ -18,6 +19,11 @@ public class WhiteboardInvoker {
 		hm.put("VIEW", new DrawBacklogs());
 		hm.put("CREATE", new CreateBacklog());
 		hm.put("DELETE", new DeleteBacklog());
+		hm.put("view", new DrawBacklogs());
+		hm.put("create", new CreateBacklog());
+		hm.put("delete", new DeleteBacklog());
+		hm.put("CHOOSE", new ChooseBacklog());
+		hm.put("choose", new ChooseBacklog());
 
 	}
 

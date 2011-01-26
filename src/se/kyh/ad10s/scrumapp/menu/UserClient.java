@@ -14,12 +14,15 @@ import se.kyh.ad10s.scrumapp.DAOs.BacklogDAO;
 
 public class UserClient {
 	public static boolean userInStartMenu = true;
+	public static boolean userInBacklogMenu;
 
 	// OUTPUTS
 	public static void startMenuWelcome() {
 		System.out.println( // Calendar.getInstance().getTime()
-				"java:scrumapp\\start \n" + "VIEW          lets you view backlogs \n"
-						+ "CREATE        creates a new backlog \n" + "DELETE        delete a backlog");
+				"scrumapp:start\\ \n"
+						+ "VIEW          lets you view backlogs \n"
+						+ "CREATE        creates a new backlog \n"
+						+ "DELETE        delete a backlog");
 
 	}
 
@@ -35,16 +38,28 @@ public class UserClient {
 
 	}
 
+	public static void drawAllBacklogIdAndName(ArrayList<Backlog> list) {
+		int numberOfBacklogs = list.size();
+
+		for (int i = 0; i < numberOfBacklogs; i++) {
+
+			System.out.print("[" + list.get(i).blid + ", "
+					+ list.get(i).backlogName + "] ");
+
+		}
+
+	}
+
 	public static void drawAllBacklogs(ArrayList<Backlog> list) {
 		int numberOfBacklogs = list.size();
 
 		for (int i = 0; i < numberOfBacklogs; i++) {
-System.out.println(" | ");
+			System.out.println(" | ");
 
 			System.out.print(" | ID: " + list.get(i).blid);
 			System.out.println("\n | NAME: " + list.get(i).backlogName);
-			System.out.println(" | DESCRIPTION: " + list.get(i).backlogDescription
-					+ "\n | \n");
+			System.out.println(" | DESCRIPTION: "
+					+ list.get(i).backlogDescription + "\n | \n");
 		}
 
 	}
@@ -70,8 +85,9 @@ System.out.println(" | ");
 	public static Command getCommand(String strCommand) {
 		return WhiteboardInvoker.hm.get(strCommand);
 	}
-	//method for getting input and also output a message
-	public static String getInput(String string){
+
+	// method for getting input and also output a message
+	public static String getInput(String string) {
 		System.out.println(string);
 		String temp = userInput();
 		return temp;
@@ -84,25 +100,23 @@ System.out.println(" | ");
 		string = scanner.nextLine();
 		return string;
 	}
-	
-	
 
 	// TODO Functions for asking for specific input
 
 	// Lets catch all strings that can not be cast to an int here.
 	// if NumberFormatException true ask user for a new int input.
 
-	public static int intAllowed() {
+	public static int intAllowed(String string) {
 		int userInt = 0;
 
 		try {
 
-			userInt = Integer.parseInt(userInput());
+			userInt = Integer.parseInt(getInput(string));
 
 		} catch (NumberFormatException s) {
 
 			System.out.println("\nExcpecting number! ");
-			intAllowed();
+			intAllowed(string);
 
 		}
 
