@@ -7,16 +7,16 @@ import se.kyh.ad10s.scrumapp.Command;
 import se.kyh.ad10s.scrumapp.DAOs.BacklogDAO;
 import se.kyh.ad10s.scrumapp.menu.UserClient;
 
-public class DeleteBacklog implements Command {
-	int blid;
+public class ChooseBacklog implements Command {
+	int choosenBacklog;
 	ArrayList<Backlog> list = BacklogDAO.getAllBacklogsFromDB();
-	
 	@Override
 	public void execute() {
-		System.out.println("scrumapp:start\\backlog\\delete \n");
 		UserClient.drawAllBacklogIdAndName(list);
-		blid = UserClient.intAllowed("\nEnter backlog id to delete:");
-		BacklogDAO.deleteBacklogFromDB(blid);
+		choosenBacklog = UserClient.intAllowed("Enter backlog id to access");
+		UserClient.userInStartMenu = false;
+		UserClient.userInBacklogMenu = true;
+		
 	}
 
 }

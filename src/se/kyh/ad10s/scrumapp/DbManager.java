@@ -17,8 +17,7 @@ public class DbManager {
 		Class.forName("com.mysql.jdbc.Driver").newInstance();
 		
 		conn = DriverManager.getConnection(url, userName, password);
-		
-		System.out.println("Database connection established\n");
+
 	}
 
 	public static Connection getConnection() throws Exception {
