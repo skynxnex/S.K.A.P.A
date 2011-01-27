@@ -9,6 +9,6 @@ public class ScrumApp {
 
 		Sprint sprint = SprintDAO.getSprintFromDB(1);
 		BurndownChart brc = new BurndownChart(sprint);
-		brc.print();
+		//brc.print();
 	}
 }
