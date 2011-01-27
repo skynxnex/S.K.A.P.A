@@ -22,7 +22,7 @@ public class CreateBacklogItem implements Command {
 	@Override
 	public void execute() {
 		System.out.print("\nYou are creating an item in ");
-		UserClient.drawBacklogName(list, backlogItemId);
+		System.out.print(UserClient.SelectedBacklog);
 		System.out.print("\n");
 		PbItem pbitem = new PbItem();
 		

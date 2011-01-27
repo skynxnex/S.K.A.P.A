@@ -3,7 +3,6 @@ package se.kyh.ad10s.scrumapp.DAOs;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Types;
-import java.util.Calendar;
 
 import se.kyh.ad10s.scrumapp.DbManager;
 import se.kyh.ad10s.scrumapp.PbItem;

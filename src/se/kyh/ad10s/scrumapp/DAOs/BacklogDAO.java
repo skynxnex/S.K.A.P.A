@@ -2,13 +2,13 @@ package se.kyh.ad10s.scrumapp.DAOs;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import se.kyh.ad10s.scrumapp.Backlog;
 import se.kyh.ad10s.scrumapp.DbManager;
 import se.kyh.ad10s.scrumapp.PbItem;
 
-import com.mysql.jdbc.Statement;
 
 public class BacklogDAO {
 	
@@ -96,7 +96,7 @@ public class BacklogDAO {
 					.createStatement();
 
 			ResultSet rs = s
-					.executeQuery("SELECT * FROM PBItem WHERE PBItemBacklogId ="+bl.blid+"");
+					.executeQuery("SELECT * FROM PBItems WHERE PBItemBacklogId ="+bl.blid+"");
 			while (rs.next()) {
 				PbItem pbitem = new PbItem();
 				pbitem.dbid = rs.getInt("PBItemId");

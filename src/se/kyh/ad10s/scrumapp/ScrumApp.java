@@ -1,14 +1,14 @@
 package se.kyh.ad10s.scrumapp;
 
 
-import se.kyh.ad10s.scrumapp.DAOs.SprintDAO;
+import se.kyh.ad10s.scrumapp.menu.MenuHolder;
 
 public class ScrumApp {
 
 	public static void main(String[] args) {
+		MenuHolder menuHolder = new MenuHolder();
+		menuHolder.startMenu();
 
-		Sprint sprint = SprintDAO.getSprintFromDB(1);
-		BurndownChart brc = new BurndownChart(sprint);
-		//brc.print();
 	}
+
 }
