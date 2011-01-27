@@ -4,7 +4,9 @@ public class MenuHolder {
 
 	public static void startMenu() {
 		StartMenu startMenu = new StartMenu();
+		BacklogMenu backlogMenu = new BacklogMenu();
 		startMenu.menu();
+		backlogMenu.menu();
 	}
 
 }

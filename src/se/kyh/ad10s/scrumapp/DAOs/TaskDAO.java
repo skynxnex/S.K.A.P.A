@@ -9,11 +9,13 @@ import se.kyh.ad10s.scrumapp.DbManager;
 import se.kyh.ad10s.scrumapp.Task;
 
 public class TaskDAO {
+	
 	/**
-	 *  Creates a new Task in DB 
-	 *  arg: Task object
+	 * Sends a taskobjcet to database
+	 * @param task
+	 * @return task
 	 */
-	public static int sendTaskToDB(Task task) {
+	public static Task sendTaskToDB(Task task) {
 		int taskId = 0;
 		try {
 			PreparedStatement s = DbManager.getConnection().prepareStatement(
@@ -36,12 +38,13 @@ public class TaskDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return taskId;
+		task.dbid = taskId;
+		return task;
 	}
 		
 	/**
 	 *  Removes a task from Database 
-	 *  Arg: taskId
+	 *  @param taskId
 	 */
 	
 	public static void deleteTaskFromDB(int taskId){
@@ -58,7 +61,7 @@ public class TaskDAO {
 	/**
 	 * 
 	 * Gets a task from the database
-	 * Returns a taskobject
+	 * @return taskobject
 	 */
 	public static Task getTaskFromDB(int id) {
 		Task task = new Task();

@@ -17,8 +17,7 @@ public class DbManager {
 		Class.forName("com.mysql.jdbc.Driver").newInstance();
 		
 		conn = DriverManager.getConnection(url, userName, password);
-		
-		System.out.println("Database connection established");
+
 	}
 
 	public static Connection getConnection() throws Exception {
@@ -34,6 +33,7 @@ public class DbManager {
 				conn.close();
 				System.out.println("Database");
 			} catch (Exception e) {
+				
 			}
 		}
 	}

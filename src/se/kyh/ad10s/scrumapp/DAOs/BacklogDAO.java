@@ -12,7 +12,8 @@ import com.mysql.jdbc.Statement;
 public class BacklogDAO {
 	
 	/**
-	 * Gets all Backlogs from database, returns arraylist with objects.
+	 * Gets all Backlogs from database, 
+	 * @return arraylist with objects.
 	 * 
 	 */
 	
@@ -39,19 +40,19 @@ public class BacklogDAO {
 	}
 	
 	/**
-	 * 
 	 * Creates a new backlog
-	 * Returns an id
+	 * @param Backlog object
+	 * @return backlog object
 	 */
 	
-	public static int createNewBacklog(String backlogName, String backlogDescription) {
+	public static Backlog createNewBacklog(Backlog bl) {
 		int blid = 0;
 		try {
 			PreparedStatement s = DbManager.getConnection().prepareStatement(
 					"INSERT INTO Backlog (	BacklogName, " + "BacklogDescription)"
 							+ "VALUES (?, ?)", Statement.RETURN_GENERATED_KEYS);
-			s.setString(1, backlogName);
-			s.setString(2, backlogDescription);
+			s.setString(1, bl.backlogName);
+			s.setString(2, bl.backlogDescription);
 
 			s.executeUpdate();
 			ResultSet rs = s.getGeneratedKeys();
@@ -62,7 +63,8 @@ public class BacklogDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return blid;
+		bl.blid = blid;
+		return bl;
 	}
 	
 	/**

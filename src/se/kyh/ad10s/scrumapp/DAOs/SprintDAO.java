@@ -5,7 +5,6 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Types;
 import java.util.ArrayList;
-import java.util.Calendar;
 import java.util.List;
 
 import se.kyh.ad10s.scrumapp.DbManager;
@@ -18,7 +17,7 @@ public class SprintDAO {
 
 	/**
 	 * Adds a PbItem to the Sprint
-	 * args: PbItem object, Sprint ID
+	 * @param PbItem object, Sprint ID
 	 */
 	public static void addItemToSprintBacklog(PbItem pbitem, int sprintid) {
 		try {
@@ -35,18 +34,18 @@ public class SprintDAO {
 
 	/**
 	 * Makes a new Sprint
-	 * args: Calendar Startdate, Calendar Enddate, BacklogID
-	 * returns a sprintID
+	 * @param Sprintobject, Backlog ID
+	 * @return Sprintobject
 	 */
-	public static int makeNewSprint(Calendar startDate, Calendar endDate, int SprintBacklogId) {
+	public static Sprint makeNewSprint(Sprint sprint, int blid) {
 		int sprintid = 0;
 		try {
 			PreparedStatement s = DbManager.getConnection().prepareStatement(
 					"INSERT INTO Sprint (	SprintStartDate, " + "SprintEndDate, "+"SprintBacklogId)"
 							+ "VALUES (?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
-			s.setDate(1, new Date(startDate.getTimeInMillis()));
-			s.setDate(2, new Date(endDate.getTimeInMillis()));
-			s.setInt(3, SprintBacklogId);
+			s.setDate(1, new Date(sprint.startDate.getTimeInMillis()));
+			s.setDate(2, new Date(sprint.endDate.getTimeInMillis()));
+			s.setInt(3, blid);
 			s.executeUpdate();
 			ResultSet rs = s.getGeneratedKeys();
 			rs.first();
@@ -55,12 +54,13 @@ public class SprintDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		return sprintid;
+		sprint.sprintid = sprintid;
+		return sprint;
 	}
 
 	/**
 	 * Gets all items from a certain sprint
-	 * returns an arraylist with pbitem objects
+	 * @return arraylist with pbitem objects
 	 */
 	public static List<PbItem> getAllItemsInSprint(int sprintid) {
 		List<PbItem> list = new ArrayList<PbItem>();
@@ -90,7 +90,7 @@ public class SprintDAO {
 
 	/**
 	 * Removes PbItems from a sprint
-	 * arg: PbItem id
+	 * @param PbItem id
 	 */
 	public void removeItemFromSprintBacklog(int id) {
 		try {

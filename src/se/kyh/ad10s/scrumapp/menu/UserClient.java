@@ -1,67 +1,134 @@
 package se.kyh.ad10s.scrumapp.menu;
 
-import java.util.Calendar;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Scanner;
-import java.util.Set;
+import java.util.ArrayList;
 
+import se.kyh.ad10s.scrumapp.Backlog;
+import se.kyh.ad10s.scrumapp.Command;
 import se.kyh.ad10s.scrumapp.WhiteboardInvoker;
+import se.kyh.ad10s.scrumapp.DAOs.BacklogDAO;
 
 public class UserClient {
 	public static boolean userInStartMenu = true;
-
-	// TODO Welcome to startmenu
+	public static boolean userInBacklogMenu;
+	public static int SelectedBacklog;
+	public static String SelectedBacklogName;
+	
 
 	// OUTPUTS
 	public static void startMenuWelcome() {
-		System.out.println(Calendar.getInstance() + "\nWelcome to startmenu");
+		System.out.println( // Calendar.getInstance().getTime()
+				"scrumapp:backlogs\\ \n"
+						+ "VIEW          lets you view backlogs \n"
+						+ "CREATE        creates a new backlog \n"
+						+ "DELETE        delete a backlog \n"
+						+ "CHOOSE        choose a backlog to tamper");
 
 	}
 
-	public static void drawCurrentHashMap() {
-
-		Set currentSet = WhiteboardInvoker.hm.entrySet();
-		Iterator i = currentSet.iterator();
+	public static void backlogMenuWelcome() {
+		ArrayList<Backlog> list = BacklogDAO.getAllBacklogsFromDB();
+		System.out.print("scrumapp:backlogs\\backlog\\");
+		drawBacklogName(list, SelectedBacklog);
+		System.out.print("\n");
+		System.out.println("VIEWALL       view all items in current backlog");
+		System.out.println("VIEW          view an item by item id");
+		System.out.println("CREATE        creates a new backlog item");
+		System.out.println("DELETE        delete an item");
+		System.out.println("CHOOSE        choose an item for sprint and create tasks");
+		System.out.println("EXIT          exit this backlog and enter mainmenu \n");
 		
-	    while(i.hasNext()){
-	        Map.Entry me = (Map.Entry)i.next();
-	        System.out.println(me.getKey() + " runs the method " + me.getValue() );
-	      }
-
 	}
 
-	// TODO sysos for all menus
+	public static boolean compareUserRequsestToBacklogIds(
+			ArrayList<Backlog> list, int userRequestedBacklogId) {
+		int numberOfBacklogs = list.size();
 
-	// INPUTS
+		for (int i = 0; i < numberOfBacklogs; i++) {
+			if (userRequestedBacklogId == list.get(i).blid) {
+				return true;
+			}
 
-	public static String userInput() {
-		String string = " ";
-		Scanner scanner = new Scanner(System.in);
-		string = scanner.nextLine();
-		return string;
+		}
+		return false;
 	}
 
-	// TODO Functions for asking for specific input
+	/**
+	 * 
+	 * @param backlogItemId
+	 * @param list
+	 * @param backlogid
+	 */
+	public static void drawBacklogName(ArrayList<Backlog> list,
+			int backlogItemId) {
+		int numberOfBacklogs = list.size();
 
-	// Lets catch all strings that can not be cast to an int here.
-	// if NumberFormatException true ask user for a new int input.
-
-	public int intAllowed() {
-		int userInt = 0;
-
-		try {
-
-			userInt = Integer.parseInt(userInput());
-
-		} catch (NumberFormatException s) {
-
-			System.out.println("\nExcpecting number! ");
-			intAllowed();
+		for (int i = 0; i < numberOfBacklogs; i++) {
+			if (backlogItemId == list.get(i).blid) {
+				System.out.print(list.get(i).backlogName);
+			}
 
 		}
 
-		return userInt;
+	}
+
+	public static void drawAllBacklogIdAndName(ArrayList<Backlog> list) {
+		int numberOfBacklogs = list.size();
+
+		for (int i = 0; i < numberOfBacklogs; i++) {
+
+			System.out.print("[" + list.get(i).blid + ", "
+					+ list.get(i).backlogName + "] ");
+
+		}
+
+	}
+
+	public static void drawAllBacklogs(ArrayList<Backlog> list) {
+		int numberOfBacklogs = list.size();
+
+		for (int i = 0; i < numberOfBacklogs; i++) {
+			System.out.println(" | ");
+
+			System.out.print(" | ID: " + list.get(i).blid);
+			System.out.println("\n | NAME: " + list.get(i).backlogName);
+			System.out.println(" | DESCRIPTION: "
+					+ list.get(i).backlogDescription + "\n | \n");
+		}
+
+	}
+
+	public static void drawCurrentBacklogItems(ArrayList<Backlog> list) {
+		int numberOfBacklogs = list.size();
+
+		for (int i = 0; i < numberOfBacklogs; i++) {
+			System.out.println(" | ");
+
+			System.out.print(" | ID: " + list.get(i).blid);
+			System.out.println("\n | NAME: " + list.get(i).backlogName);
+			System.out.println(" | DESCRIPTION: "
+					+ list.get(i).backlogDescription + "\n | \n");
+		}
+
+	}
+
+	// INPUTS
+
+	// Check input against hashmap
+	public static void executeUserInput() {
+		String s = ClientInputs.userInput();
+		executeCommand(s);
+	}
+
+	public static void executeCommand(String s) {
+		Command c = getCommand(s);
+		if (c == null) {
+			return;
+		}
+		c.execute();
+	}
+
+	public static Command getCommand(String strCommand) {
+		return WhiteboardInvoker.hm.get(strCommand);
 	}
 
 }

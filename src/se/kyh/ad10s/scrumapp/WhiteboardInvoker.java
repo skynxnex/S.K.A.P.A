@@ -2,77 +2,53 @@ package se.kyh.ad10s.scrumapp;
 
 import java.util.HashMap;
 
+import se.kyh.ad10s.scrumapp.concretecommand.ChooseBacklog;
 import se.kyh.ad10s.scrumapp.concretecommand.CreateBacklog;
+import se.kyh.ad10s.scrumapp.concretecommand.CreateBacklogItem;
 import se.kyh.ad10s.scrumapp.concretecommand.DeleteBacklog;
 import se.kyh.ad10s.scrumapp.concretecommand.DrawBacklogs;
+import se.kyh.ad10s.scrumapp.concretecommand.DrawCurrentBacklogItems;
 
 //import se.kyh.command.Command;
 //import se.kyh.command.WhiteboardAddPbItem;
 
 //INVOKER
 public class WhiteboardInvoker {
-	
 	public static HashMap<String, Command> hm = new HashMap<String, Command>();
-	
-	public WhiteboardInvoker(){
-//		hm.put("ADD PBI", new WhiteboardAddPbItem());
-		
-//A way to create more keys to a value without initiating them more than once		
-//		MenuItem mi = new WhiteboardExecuteAddPbItem()
-//		hm.put("Actual menu item for ADD PbItem", mi);
-//		hm.put("Spelled wrong option", mi);
-//		hm.put("short command option", mi);
 
-		
-//		descriptive text
-//		shortinput
-//		descriptive text2
-//		shortinput2
-//		
-	}
-	
 	public static void createStartMenuHashMap() {
-		DrawBacklogs drawBacklogs = new DrawBacklogs();
-		CreateBacklog createBacklog = new CreateBacklog();
-		DeleteBacklog deleteBacklog = new DeleteBacklog();
-		
-//		hm.put("1", drawBacklogs());
-//		hm.put("Choose existing backlog", drawBacklogs());
-//		hm.put("CHOOSE", drawBacklogs());
-//		
-//		hm.put("2", createBacklog());
-//		hm.put("Create a new backlog", createBacklog());
-//		hm.put("CREATE", createBacklog());
-//		
-//		hm.put("3", deleteBacklog());
-//		hm.put("Delete backlog", deleteBacklog());
-//		hm.put("DELETE", deleteBacklog());
-		
-		
-		
+		hm.clear();
+		hm.put("VIEW", new DrawBacklogs());
+		hm.put("CREATE", new CreateBacklog());
+		hm.put("DELETE", new DeleteBacklog());
+		hm.put("CHOOSE", new ChooseBacklog());
+		hm.put("view", new DrawBacklogs());
+		hm.put("create", new CreateBacklog());
+		hm.put("delete", new DeleteBacklog());
+		hm.put("choose", new ChooseBacklog());
+		hm.put("View", new DrawBacklogs());
+		hm.put("Create", new CreateBacklog());
+		hm.put("Delete", new DeleteBacklog());
+		hm.put("Choose", new ChooseBacklog());
+		hm.put("1", new DrawBacklogs());
+		hm.put("2", new CreateBacklog());
+		hm.put("3", new DeleteBacklog());
+		hm.put("4", new ChooseBacklog());
+
 	}
 
-	
-	
-	public void executeCommand(String s){
-		Command c = getCommand(s);
-		if (c == null){
-			return;
-		}
-		c.execute();
-	}
-	
-	public Command getCommand(String strCommand)
-	{
-		return hm.get(strCommand);
+	public static void createBacklogMenuHashMap() {
+		hm.clear();
+		hm.put("VIEW", new DrawCurrentBacklogItems());
+		hm.put("CREATE", new CreateBacklogItem());
+		hm.put("create", new CreateBacklogItem());
+		hm.put("view", new DrawCurrentBacklogItems());
+		hm.put("Create", new CreateBacklogItem());
+		hm.put("View", new DrawCurrentBacklogItems());
+		hm.put("1", new CreateBacklogItem());
+		hm.put("2", new DrawCurrentBacklogItems());
 	}
 
 
-
-
-
-
-	
-	
 
 }
