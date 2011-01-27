@@ -6,6 +6,7 @@ import java.util.ArrayList;
 
 import se.kyh.ad10s.scrumapp.Backlog;
 import se.kyh.ad10s.scrumapp.DbManager;
+import se.kyh.ad10s.scrumapp.PbItem;
 
 import com.mysql.jdbc.Statement;
 
@@ -81,5 +82,36 @@ public class BacklogDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	/**
+	 * Gets all PbItems in a Backlog
+	 * @param Backlog object
+	 * @return Arraylist of PbItem objects
+	 */
+	public static ArrayList<PbItem> getAllPbItemsFromBacklog(Backlog bl) {
+		ArrayList<PbItem> list = new ArrayList<PbItem>();
+		try {
+			Statement s = (Statement) DbManager.getConnection()
+					.createStatement();
+
+			ResultSet rs = s
+					.executeQuery("SELECT * FROM PBItem WHERE PBItemBacklogId ="+bl.blid+"");
+			while (rs.next()) {
+				PbItem pbitem = new PbItem();
+				pbitem.dbid = rs.getInt("PBItemId");
+				pbitem.name = rs.getString("PBItemName");
+				pbitem.description = rs.getString("PBItemDescription");
+				pbitem.est = rs.getInt("PBItemEST");
+				pbitem.prio = rs.getInt("PBItemPrio");
+				pbitem.pBItemSprintId = rs.getInt("PBItemSprintId");
+				pbitem.BacklogId = rs.getInt("PBItemBacklogId");
+				list.add(pbitem);
+			}
+			s.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 }
