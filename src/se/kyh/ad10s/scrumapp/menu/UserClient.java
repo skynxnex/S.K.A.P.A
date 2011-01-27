@@ -1,11 +1,6 @@
 package se.kyh.ad10s.scrumapp.menu;
 
 import java.util.ArrayList;
-import java.util.Calendar;
-import java.util.Iterator;
-import java.util.Map;
-import java.util.Scanner;
-import java.util.Set;
 
 import se.kyh.ad10s.scrumapp.Backlog;
 import se.kyh.ad10s.scrumapp.Command;
@@ -15,25 +10,63 @@ import se.kyh.ad10s.scrumapp.DAOs.BacklogDAO;
 public class UserClient {
 	public static boolean userInStartMenu = true;
 	public static boolean userInBacklogMenu;
+	public static int SelectedBacklog;
+	public static String SelectedBacklogName;
+	
 
 	// OUTPUTS
 	public static void startMenuWelcome() {
 		System.out.println( // Calendar.getInstance().getTime()
-				"scrumapp:start\\ \n"
+				"scrumapp:backlogs\\ \n"
 						+ "VIEW          lets you view backlogs \n"
 						+ "CREATE        creates a new backlog \n"
-						+ "DELETE        delete a backlog");
+						+ "DELETE        delete a backlog \n"
+						+ "CHOOSE        choose a backlog to tamper");
 
 	}
 
-	public static void drawCurrentHashMap() {
+	public static void backlogMenuWelcome() {
+		ArrayList<Backlog> list = BacklogDAO.getAllBacklogsFromDB();
+		System.out.print("scrumapp:backlogs\\backlog\\");
+		drawBacklogName(list, SelectedBacklog);
+		System.out.print("\n");
+		System.out.println("VIEWALL       view all items in current backlog");
+		System.out.println("VIEW          view an item by item id");
+		System.out.println("CREATE        creates a new backlog item");
+		System.out.println("DELETE        delete an item");
+		System.out.println("CHOOSE        choose an item for sprint and create tasks");
+		System.out.println("EXIT          exit this backlog and enter mainmenu \n");
+		
+	}
 
-		Set currentSet = WhiteboardInvoker.hm.entrySet();
-		Iterator i = currentSet.iterator();
+	public static boolean compareUserRequsestToBacklogIds(
+			ArrayList<Backlog> list, int userRequestedBacklogId) {
+		int numberOfBacklogs = list.size();
 
-		while (i.hasNext()) {
-			Map.Entry me = (Map.Entry) i.next();
-			System.out.println(me.getKey());
+		for (int i = 0; i < numberOfBacklogs; i++) {
+			if (userRequestedBacklogId == list.get(i).blid) {
+				return true;
+			}
+
+		}
+		return false;
+	}
+
+	/**
+	 * 
+	 * @param backlogItemId
+	 * @param list
+	 * @param backlogid
+	 */
+	public static void drawBacklogName(ArrayList<Backlog> list,
+			int backlogItemId) {
+		int numberOfBacklogs = list.size();
+
+		for (int i = 0; i < numberOfBacklogs; i++) {
+			if (backlogItemId == list.get(i).blid) {
+				System.out.print(list.get(i).backlogName);
+			}
+
 		}
 
 	}
@@ -64,13 +97,25 @@ public class UserClient {
 
 	}
 
-	// TODO sysos for all menus
+	public static void drawCurrentBacklogItems(ArrayList<Backlog> list) {
+		int numberOfBacklogs = list.size();
+
+		for (int i = 0; i < numberOfBacklogs; i++) {
+			System.out.println(" | ");
+
+			System.out.print(" | ID: " + list.get(i).blid);
+			System.out.println("\n | NAME: " + list.get(i).backlogName);
+			System.out.println(" | DESCRIPTION: "
+					+ list.get(i).backlogDescription + "\n | \n");
+		}
+
+	}
 
 	// INPUTS
 
-	// Check input against hm
+	// Check input against hashmap
 	public static void executeUserInput() {
-		String s = userInput();
+		String s = ClientInputs.userInput();
 		executeCommand(s);
 	}
 
@@ -84,43 +129,6 @@ public class UserClient {
 
 	public static Command getCommand(String strCommand) {
 		return WhiteboardInvoker.hm.get(strCommand);
-	}
-
-	// method for getting input and also output a message
-	public static String getInput(String string) {
-		System.out.println(string);
-		String temp = userInput();
-		return temp;
-	}
-
-	// Plain method for getting input
-	public static String userInput() {
-		String string = " ";
-		Scanner scanner = new Scanner(System.in);
-		string = scanner.nextLine();
-		return string;
-	}
-
-	// TODO Functions for asking for specific input
-
-	// Lets catch all strings that can not be cast to an int here.
-	// if NumberFormatException true ask user for a new int input.
-
-	public static int intAllowed(String string) {
-		int userInt = 0;
-
-		try {
-
-			userInt = Integer.parseInt(getInput(string));
-
-		} catch (NumberFormatException s) {
-
-			System.out.println("\nExcpecting number! ");
-			intAllowed(string);
-
-		}
-
-		return userInt;
 	}
 
 }

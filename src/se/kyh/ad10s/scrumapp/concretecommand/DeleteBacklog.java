@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import se.kyh.ad10s.scrumapp.Backlog;
 import se.kyh.ad10s.scrumapp.Command;
 import se.kyh.ad10s.scrumapp.DAOs.BacklogDAO;
+import se.kyh.ad10s.scrumapp.menu.ClientInputs;
 import se.kyh.ad10s.scrumapp.menu.UserClient;
 
 public class DeleteBacklog implements Command {
@@ -15,7 +16,7 @@ public class DeleteBacklog implements Command {
 	public void execute() {
 		System.out.println("scrumapp:start\\backlog\\delete \n");
 		UserClient.drawAllBacklogIdAndName(list);
-		blid = UserClient.intAllowed("\nEnter backlog id to delete:");
+		blid = ClientInputs.intAllowed("\nEnter backlog id to delete:");
 		BacklogDAO.deleteBacklogFromDB(blid);
 	}
 
