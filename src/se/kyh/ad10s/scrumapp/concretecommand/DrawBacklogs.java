@@ -15,6 +15,5 @@ public class DrawBacklogs implements Command {
 		ArrayList<Backlog> list = BacklogDAO.getAllBacklogsFromDB();
 		UserClient.drawAllBacklogs(list);
 
-
 	}
 }

@@ -18,10 +18,12 @@ public class WhiteboardInvoker {
 
 	public static void createStartMenuHashMap() {
 		hm.clear();
+		
 		hm.put("VIEW", new DrawBacklogs());
 		hm.put("CREATE", new CreateBacklog());
 		hm.put("DELETE", new DeleteBacklog());
 		hm.put("CHOOSE", new ChooseBacklog());
+		//Alternative inputs
 		hm.put("view", new DrawBacklogs());
 		hm.put("create", new CreateBacklog());
 		hm.put("delete", new DeleteBacklog());

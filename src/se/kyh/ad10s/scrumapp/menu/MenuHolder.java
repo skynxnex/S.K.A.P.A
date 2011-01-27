@@ -7,6 +7,7 @@ public class MenuHolder {
 		BacklogMenu backlogMenu = new BacklogMenu();
 		startMenu.menu();
 		backlogMenu.menu();
+		//TODO While running
 	}
 
 }
