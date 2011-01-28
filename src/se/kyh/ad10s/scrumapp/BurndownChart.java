@@ -64,7 +64,7 @@ public class BurndownChart {
 			startDaysToNow = totalSprintDays;
 		}
 		int listlength = list.size();
-		int listyear, listmonth, listday;
+		int listyear = 0, listmonth = 0, listday = 0;
 		int pbyear, pbmonth, pbday;
 		Calendar thisdate = startDate;
 		for (int i = 0; i < startDaysToNow; i++) {
@@ -72,9 +72,9 @@ public class BurndownChart {
 			pbmonth = thisdate.get(Calendar.MONTH);
 			pbday = thisdate.get(Calendar.DAY_OF_MONTH);
 			for (int a = 0; a < listlength; a++) {
-				listyear = list.get(a).PbItemDoneDate.get(Calendar.YEAR);
-				listmonth = list.get(a).PbItemDoneDate.get(Calendar.MONTH);
-				listday = list.get(a).PbItemDoneDate.get(Calendar.DAY_OF_MONTH);
+					listyear = list.get(a).PbItemDoneDate.get(Calendar.YEAR);
+					listmonth = list.get(a).PbItemDoneDate.get(Calendar.MONTH);
+					listday = list.get(a).PbItemDoneDate.get(Calendar.DAY_OF_MONTH);
 				if (listyear == pbyear && listmonth == pbmonth
 						&& listday == pbday) {
 					restSprintEst -= list.get(a).est;

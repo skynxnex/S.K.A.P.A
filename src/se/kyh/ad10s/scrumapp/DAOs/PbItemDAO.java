@@ -3,7 +3,7 @@ package se.kyh.ad10s.scrumapp.DAOs;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Types;
-import java.util.Calendar;
+import java.util.ArrayList;
 
 import se.kyh.ad10s.scrumapp.DbManager;
 import se.kyh.ad10s.scrumapp.PbItem;
@@ -123,6 +123,36 @@ public class PbItemDAO {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
+	}
+	
+	/**
+	 * Gets all tasks connected to a certain PbItem
+	 * @param PbItem
+	 * @return ArrayList of Task objectsS ordered by taskprio
+	 */
+	public static ArrayList<Task> getTaskConnectedToPbItemFromDB(PbItem pbitem) {
+		ArrayList<Task> list = new ArrayList<Task>();
+		try {
+			Statement s = (Statement) DbManager.getConnection()
+					.createStatement();
+			ResultSet rs = s
+					.executeQuery("SELECT * FROM Tasks WHERE TaskPBItemId = "
+							+ pbitem.dbid + " ORDER BY TaskPrio ASC");
+			while (rs.next()) {
+				Task task = new Task();
+				task.dbid = rs.getInt("TaskId");
+				task.name = rs.getString("TaskName");
+				task.description = rs.getString("TaskDescription");
+				task.est = rs.getInt("TaskEST");
+				task.prio = rs.getInt("TaskPrio");
+				task.TaskPBItemId = rs.getInt("TaskPBItemId");
+				list.add(task);
+			}
+			s.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
 	}
 
 }
