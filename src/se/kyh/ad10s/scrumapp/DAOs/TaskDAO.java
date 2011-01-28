@@ -85,4 +85,28 @@ public class TaskDAO {
 		}
 		return task;
 	}
+	
+	/**
+	 * Set the taskOwnerName and the checkOutDate for the task i database
+	 * requiers a taskOwnerName and the taskobjekt
+	 */
+	//inte säker på om jag gjort timestampsättningen rätt...
+	public static void Task checkoutTask(String taskOwnerName, Task task){
+		
+		try{
+			PreparedStatement s = DbManager.getConnection().prepareStatement(
+			.executeQuery("INSERT INTO `Tasks` (myCheckoutName," + "myCheckoutDate) " +
+					"WHERE " + " TaskId =" +  task.dbid + "" + "VALUES (?, ?)",
+					Statement.RETURN_GENERATED_KEYS);
+			s.setString(1, taskOwnerName);
+			s.setDate(2, getTime());
+			s.executeUpdate();
+			s.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+	
+		
+	}
 }
