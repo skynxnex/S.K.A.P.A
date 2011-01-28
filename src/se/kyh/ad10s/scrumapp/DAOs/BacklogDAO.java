@@ -2,23 +2,23 @@ package se.kyh.ad10s.scrumapp.DAOs;
 
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import se.kyh.ad10s.scrumapp.Backlog;
 import se.kyh.ad10s.scrumapp.DbManager;
 import se.kyh.ad10s.scrumapp.PbItem;
 
-import com.mysql.jdbc.Statement;
 
 public class BacklogDAO {
-
+	
 	/**
 	 * Gets all Backlogs from database,
 	 * 
 	 * @return arraylist with objects.
 	 * 
 	 */
-
+	
 	public static ArrayList<Backlog> getAllBacklogsFromDB() {
 		ArrayList<Backlog> list = new ArrayList<Backlog>();
 		try {
@@ -27,7 +27,7 @@ public class BacklogDAO {
 			ResultSet rs = s
 					.executeQuery("SELECT * FROM Backlog ORDER BY BacklogId ASC");
 			while (rs.next()) {
-				Backlog bl = new Backlog();
+				Backlog bl  = new Backlog();
 				bl.blid = rs.getInt("BacklogId");
 				bl.backlogName = rs.getString("BacklogName");
 				bl.backlogDescription = rs.getString("BacklogDescription");
@@ -100,8 +100,7 @@ public class BacklogDAO {
 			Statement s = (Statement) DbManager.getConnection()
 					.createStatement();
 			ResultSet rs = s
-					.executeQuery("SELECT * FROM PBItems WHERE PBItemBacklogId ="
-							+ bl.blid + "");
+					.executeQuery("SELECT * FROM PBItems WHERE PBItemBacklogId ="+bl.blid+"");
 			while (rs.next()) {
 				PbItem pbitem = new PbItem();
 				pbitem.dbid = rs.getInt("PBItemId");
