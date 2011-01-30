@@ -54,6 +54,7 @@ public class UserClient {
 		System.out.println("REMOVE     remove an ITEM from SPRINT");
 		System.out.println("CREATE     create a new task");
 		System.out.println("DELETE     delete a task");
+		System.out.println("CHECKOUT   checkout a task to work on");//lades till av nli
 		System.out.println("BACK       exit this ITEM and return to BACKLOG");
 		
 	}

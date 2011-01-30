@@ -72,20 +72,24 @@ public class WhiteboardInvoker {
 		hm.put("4", new DeleteBacklogItem());
 		hm.put("5", new ChooseBacklogItem());
 	}
-
+//nli added checkouttask
 	public static void createBacklogItemMenuHashMap() {
 		hm.clear();
 //		hm.put("ADD", new AddItemToSprint());
 //		hm.put("REMOVE", new RemoveItemFromSprint());
 		hm.put("CREATE", new CreateNewTask());
 		hm.put("DELETE", new DeleteTask());
+		hm.put("CHECKOUT", new CheckoutTask());
 		
 		hm.put("create", new CreateNewTask());
 		hm.put("delete", new DeleteTask());
+		hm.put("checkout", new CheckoutTask());
 		hm.put("Create", new CreateNewTask());
 		hm.put("Delete", new DeleteTask());
+		hm.put("Checkout", new CheckoutTask());
 		hm.put("3", new CreateNewTask());
 		hm.put("4", new DeleteTask());
+		hm.put("5", new CheckoutTask());
 	}
 
 }
