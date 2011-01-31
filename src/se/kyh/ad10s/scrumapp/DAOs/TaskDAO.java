@@ -87,19 +87,17 @@ public class TaskDAO {
 	}
 	
 	/**
-	 * Set the taskOwnerName and the checkOutDate for the task i database
+	 * Set the taskOwnerName and the checkOutDate for the task in database
 	 * requiers a taskOwnerName and the taskobjekt
 	 */
 	//inte säker på om jag gjort timestampsättningen rätt...
-	public static void Task checkoutTask(String taskOwnerName, Task task){
+	public static void checkoutTask(String taskOwnerName, Task task){
 		
 		try{
-			PreparedStatement s = DbManager.getConnection().prepareStatement(
-			.executeQuery("INSERT INTO `Tasks` (myCheckoutName," + "myCheckoutDate) " +
-					"WHERE " + " TaskId =" +  task.dbid + "" + "VALUES (?, ?)",
-					Statement.RETURN_GENERATED_KEYS);
+			PreparedStatement s = DbManager.getConnection().prepareStatement("INSERT INTO `Tasks` (" +
+					"myCheckoutName, myCheckoutDate) WHERE TaskId =" +  task.dbid + " VALUES (?, NOW()");
 			s.setString(1, taskOwnerName);
-			s.setDate(2, getTime());
+//			s.setDate(2, getTime());
 			s.executeUpdate();
 			s.close();
 		} catch (Exception e) {

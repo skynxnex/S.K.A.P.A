@@ -11,7 +11,7 @@ public class DbManager {
 	private static void init() throws Exception {
 		
 		String userName = "root";
-		String password = "root";
+		String password = " ";
 
 		String url = "jdbc:mysql://localhost/scrumapp";
 		Class.forName("com.mysql.jdbc.Driver").newInstance();
