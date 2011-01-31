@@ -79,7 +79,11 @@ public class SprintDAO {
 				pbitem.prio = rs.getInt("PBItemPrio");
 				pbitem.pBItemSprintId = rs.getInt("PBItemSprintId");
 				pbitem.BacklogId = rs.getInt("PBItemBacklogId");
-				pbitem.PbItemDoneDate.setTime(rs.getDate("PBItemDoneDate"));
+				if(rs.getDate("PBItemDoneDate") != null) {
+					pbitem.PbItemDoneDate.setTime(rs.getDate("PBItemDoneDate"));
+				} else {
+					pbitem.PbItemDoneDate.set(2000, 0, 01);
+				}
 				list.add(pbitem);
 			}
 			s.close();
