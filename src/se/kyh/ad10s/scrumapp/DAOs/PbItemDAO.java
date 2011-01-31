@@ -3,6 +3,7 @@ package se.kyh.ad10s.scrumapp.DAOs;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.Types;
+import java.util.ArrayList;
 
 import se.kyh.ad10s.scrumapp.DbManager;
 import se.kyh.ad10s.scrumapp.PbItem;
@@ -124,4 +125,38 @@ public class PbItemDAO {
 		}
 	}
 
+	public static void setPbItemToDone(int taskPBItemId) {
+		try{
+			PreparedStatement s = DbManager.getConnection().prepareStatement(
+					"UPDATE `pbitems` SET PBItemDoneDate = NOW() WHERE PBItemId=" + taskPBItemId+"");
+			s.executeUpdate();
+			s.close();
+		
+		}catch (Exception e){
+			e.printStackTrace();
+		}
+		
+	}
+
+	public static boolean getAllTasksInPbItemDone(int taskPBItemId) {
+		boolean returnvalue = false;
+		try {
+			Statement s = (Statement) DbManager.getConnection()
+					.createStatement();
+			ResultSet rs = s
+					.executeQuery("SELECT `TaskId` FROM `Tasks` WHERE TaskPBItemId ="
+							+ taskPBItemId + " AND `TaskDone` = 0 ");
+			if(rs.next()) {
+				returnvalue = false;
+			}else{
+				returnvalue = true;
+			}
+			s.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return returnvalue;			
+	}
+
+	
 }

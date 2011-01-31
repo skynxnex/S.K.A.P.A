@@ -1,14 +1,18 @@
 package se.kyh.ad10s.scrumapp;
 
 
+import se.kyh.ad10s.scrumapp.DAOs.PbItemDAO;
 import se.kyh.ad10s.scrumapp.DAOs.SprintDAO;
+import se.kyh.ad10s.scrumapp.DAOs.TaskDAO;
 
 public class ScrumApp {
 
 	public static void main(String[] args) {
-		Sprint sprint = new Sprint();
-		sprint = SprintDAO.getSprintFromDB(1);
-		BurndownChart br = new BurndownChart(sprint);
+	PbItem pbitem = new PbItem();
+	Task task = new Task();
+	task = TaskDAO.getTaskFromDB(1);
+	pbitem = PbItemDAO.getPbItemFromDB(1);
+	pbitem.checkPbItemDone(task);
 
 	}
 

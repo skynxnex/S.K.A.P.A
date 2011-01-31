@@ -17,7 +17,7 @@ public class CreateNewTask implements Command {
 		task.prio = ClientInputs.intAllowed("PRIO: ");
 		task.taskPBItemId = UserClient.SelectedBacklogItem;
 		TaskDAO.sendTaskToDB(task);
-
+		//blir fel för sendTaskToDB returnerar ett Task object
 	}
 
 }

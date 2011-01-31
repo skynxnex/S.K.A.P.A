@@ -97,15 +97,32 @@ public class TaskDAO {
 
 		try {
 			PreparedStatement s = DbManager.getConnection().prepareStatement(
-					"UPDATE `Tasks` SET myCheckoutName = ?, myCheckoutDate = NOW() WHERE TaskId ="
+					"UPDATE `Tasks` SET TaskCheckoutName = ?, TaskCheckoutDate = NOW() WHERE TaskId ="
 							+ task.dbid + "");
 			s.setString(1, taskOwnerName);
-			// s.setDate(2, getTime());
 			s.executeUpdate();
 			s.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 
+	}
+	
+	/**
+	 * Set the Task as done
+	 * @param Task objekt
+	 */
+	
+	public static void setTaskToDone(Task task){
+		
+		try{
+			PreparedStatement s = DbManager.getConnection().prepareStatement(
+					"UPDATE `Tasks` SET TaskDone = True WHERE TaskId=" + task.dbid + "");
+			s.executeUpdate();
+			s.close();
+		
+		}catch (Exception e){
+			e.printStackTrace();
+		}
 	}
 }
