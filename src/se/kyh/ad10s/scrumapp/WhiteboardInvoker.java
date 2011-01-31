@@ -2,6 +2,7 @@ package se.kyh.ad10s.scrumapp;
 
 import java.util.HashMap;
 
+import se.kyh.ad10s.scrumapp.concretecommand.CheckoutTask;
 import se.kyh.ad10s.scrumapp.concretecommand.ChooseBacklog;
 import se.kyh.ad10s.scrumapp.concretecommand.ChooseBacklogItem;
 import se.kyh.ad10s.scrumapp.concretecommand.CreateBacklog;
