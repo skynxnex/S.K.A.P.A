@@ -9,9 +9,10 @@ import se.kyh.ad10s.scrumapp.Task;
 import com.mysql.jdbc.Statement;
 
 public class TaskDAO {
-	
+
 	/**
 	 * Sends a taskobjcet to database
+	 * 
 	 * @param task
 	 * @return task
 	 */
@@ -19,9 +20,8 @@ public class TaskDAO {
 		int taskId = 0;
 		try {
 			PreparedStatement s = DbManager.getConnection().prepareStatement(
-					"INSERT INTO Tasks (	TaskName, "
-							+ "TaskDescription, " + "TaskEST,"
-							+ "TaskPrio," + "TaskPBItemId) "
+					"INSERT INTO Tasks (	TaskName, " + "TaskDescription, "
+							+ "TaskEST," + "TaskPrio," + "TaskPBItemId) "
 							+ "VALUES (?, ?, ?, ?, ?)",
 					Statement.RETURN_GENERATED_KEYS);
 			s.setString(1, task.name);
@@ -41,26 +41,28 @@ public class TaskDAO {
 		task.dbid = taskId;
 		return task;
 	}
-		
+
 	/**
-	 *  Removes a task from Database 
-	 *  @param taskId
+	 * Removes a task from Database
+	 * 
+	 * @param taskId
 	 */
-	
-	public static void deleteTaskFromDB(int taskId){
+
+	public static void deleteTaskFromDB(int taskId) {
 		try {
 			PreparedStatement s = DbManager.getConnection().prepareStatement(
-					"DELETE FROM Tasks WHERE TaskId ="+taskId+"");
+					"DELETE FROM Tasks WHERE TaskId =" + taskId + "");
 			s.executeUpdate();
 			s.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * 
 	 * Gets a task from the database
+	 * 
 	 * @return taskobject
 	 */
 	public static Task getTaskFromDB(int id) {
@@ -69,8 +71,8 @@ public class TaskDAO {
 			Statement s = (Statement) DbManager.getConnection()
 					.createStatement();
 			ResultSet rs = s
-					.executeQuery("SELECT * FROM `Tasks` WHERE TaskId ="
-							+ id + "");
+					.executeQuery("SELECT * FROM `Tasks` WHERE TaskId =" + id
+							+ "");
 			while (rs.next()) {
 				task.dbid = rs.getInt("TaskId");
 				task.name = rs.getString("TaskName");
@@ -85,26 +87,25 @@ public class TaskDAO {
 		}
 		return task;
 	}
-	
+
 	/**
 	 * Set the taskOwnerName and the checkOutDate for the task in database
-	 * requiers a taskOwnerName and the taskobjekt
+	 * @param Taskowner name - String, Taskobject
+	 * 
 	 */
-	//inte säker på om jag gjort timestampsättningen rätt...
-	public static void checkoutTask(String taskOwnerName, Task task){
-		
-		try{
-			PreparedStatement s = DbManager.getConnection().prepareStatement("INSERT INTO `Tasks` (" +
-					"myCheckoutName, myCheckoutDate) WHERE TaskId =" +  task.dbid + " VALUES (?, NOW()");
+	public static void checkoutTask(String taskOwnerName, Task task) {
+
+		try {
+			PreparedStatement s = DbManager.getConnection().prepareStatement(
+					"UPDATE `Tasks` SET myCheckoutName = ?, myCheckoutDate = NOW() WHERE TaskId ="
+							+ task.dbid + "");
 			s.setString(1, taskOwnerName);
-//			s.setDate(2, getTime());
+			// s.setDate(2, getTime());
 			s.executeUpdate();
 			s.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
-	
-		
+
 	}
 }

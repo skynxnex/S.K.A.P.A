@@ -17,7 +17,9 @@ public class SprintDAO {
 
 	/**
 	 * Adds a PbItem to the Sprint
-	 * @param PbItem object, Sprint ID
+	 * 
+	 * @param PbItem
+	 *            object, Sprint ID
 	 */
 	public static void addItemToSprintBacklog(PbItem pbitem, int sprintid) {
 		try {
@@ -34,15 +36,19 @@ public class SprintDAO {
 
 	/**
 	 * Makes a new Sprint
-	 * @param Sprintobject, Backlog ID
+	 * 
+	 * @param Sprintobject
+	 *            , Backlog ID
 	 * @return Sprintobject
 	 */
 	public static Sprint makeNewSprint(Sprint sprint, int blid) {
 		int sprintid = 0;
 		try {
 			PreparedStatement s = DbManager.getConnection().prepareStatement(
-					"INSERT INTO Sprint (	SprintStartDate, " + "SprintEndDate, "+"SprintBacklogId)"
-							+ "VALUES (?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
+					"INSERT INTO Sprint (	SprintStartDate, "
+							+ "SprintEndDate, " + "SprintBacklogId)"
+							+ "VALUES (?, ?, ?)",
+					Statement.RETURN_GENERATED_KEYS);
 			s.setDate(1, new Date(sprint.startDate.getTimeInMillis()));
 			s.setDate(2, new Date(sprint.endDate.getTimeInMillis()));
 			s.setInt(3, blid);
@@ -60,6 +66,7 @@ public class SprintDAO {
 
 	/**
 	 * Gets all items from a certain sprint
+	 * 
 	 * @return arraylist with pbitem objects
 	 */
 	public static List<PbItem> getAllItemsInSprint(int sprintid) {
@@ -79,7 +86,7 @@ public class SprintDAO {
 				pbitem.prio = rs.getInt("PBItemPrio");
 				pbitem.pBItemSprintId = rs.getInt("PBItemSprintId");
 				pbitem.BacklogId = rs.getInt("PBItemBacklogId");
-				if(rs.getDate("PBItemDoneDate") != null) {
+				if (rs.getDate("PBItemDoneDate") != null) {
 					pbitem.PbItemDoneDate.setTime(rs.getDate("PBItemDoneDate"));
 				} else {
 					pbitem.PbItemDoneDate.set(2000, 0, 01);
@@ -95,7 +102,9 @@ public class SprintDAO {
 
 	/**
 	 * Removes PbItems from a sprint
-	 * @param PbItem id
+	 * 
+	 * @param PbItem
+	 *            id
 	 */
 	public void removeItemFromSprintBacklog(int id) {
 		try {
@@ -111,8 +120,7 @@ public class SprintDAO {
 	}
 
 	/**
-	 * Gets all sprints in database from a certain Backlog
-	 * args: Backlog id
+	 * Gets all sprints in database from a certain Backlog args: Backlog id
 	 * returns an Arraylist with sprintobjects
 	 */
 	public static ArrayList<Sprint> getAllSprints(int id) {
@@ -121,7 +129,8 @@ public class SprintDAO {
 			Statement s = (Statement) DbManager.getConnection()
 					.createStatement();
 			ResultSet rs = s
-					.executeQuery("SELECT * FROM Sprint WHERE SprintBacklogId = "+id+"ORDER BY SprintStartDate ASC");
+					.executeQuery("SELECT * FROM Sprint WHERE SprintBacklogId = "
+							+ id + "ORDER BY SprintStartDate ASC");
 			while (rs.next()) {
 				Sprint sprint = new Sprint();
 				sprint.sprintid = rs.getInt("SprintId");
@@ -136,10 +145,9 @@ public class SprintDAO {
 		}
 		return list;
 	}
-	
+
 	/**
-	 * Deletes a sprint from the database
-	 * arg: SprintID
+	 * Deletes a sprint from the database arg: SprintID
 	 */
 	public static void deleteSprintFromDB(int sprintId) {
 		try {
@@ -153,9 +161,8 @@ public class SprintDAO {
 	}
 
 	/**
-	 * Lists all PbItems not added to a sprint
-	 * arg: Current BacklogID
-	 * returns an arraylist with PbItem objects
+	 * Lists all PbItems not added to a sprint arg: Current BacklogID returns an
+	 * arraylist with PbItem objects
 	 */
 	public static ArrayList<PbItem> getAllPbItemsFromDBWithNoSprint(int blid) {
 		ArrayList<PbItem> list = new ArrayList<PbItem>();
@@ -185,8 +192,8 @@ public class SprintDAO {
 		}
 		return list;
 	}
-	
-	public static Sprint getSprintFromDB (int sprintid) {
+
+	public static Sprint getSprintFromDB(int sprintid) {
 		Sprint sprint = new Sprint();
 		try {
 			Statement s = (Statement) DbManager.getConnection()
