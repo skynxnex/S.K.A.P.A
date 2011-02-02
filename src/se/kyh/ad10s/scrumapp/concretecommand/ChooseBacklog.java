@@ -7,7 +7,9 @@ import se.kyh.ad10s.scrumapp.Command;
 import se.kyh.ad10s.scrumapp.DAOs.BacklogDAO;
 import se.kyh.ad10s.scrumapp.menu.ClientInputs;
 import se.kyh.ad10s.scrumapp.menu.UserClient;
-
+/**
+ * Sets the variables: SelectedBacklog with BacklogId, userInStartMenu to false, userInBacklogMenu to true in Userclient.java
+ */
 public class ChooseBacklog implements Command {
 	ArrayList<Backlog> list = BacklogDAO.getAllBacklogsFromDB();
 	int userInputSelectedBacklog;
