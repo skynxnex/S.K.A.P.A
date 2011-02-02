@@ -5,6 +5,7 @@ import java.sql.ResultSet;
 import java.sql.Types;
 import java.util.ArrayList;
 
+import se.kyh.ad10s.scrumapp.Backlog;
 import se.kyh.ad10s.scrumapp.DbManager;
 import se.kyh.ad10s.scrumapp.PbItem;
 import se.kyh.ad10s.scrumapp.Task;
@@ -89,6 +90,41 @@ public class PbItemDAO {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * @param PbItem object
+	 * @return Arraylist with Task objects
+	 * List all task to PbItem
+	 */
+	
+	public static ArrayList<Task> drawAllTasksForPbItem(PbItem pbItem){
+		ArrayList<Task> list = new ArrayList<Task>();
+		
+		try{
+			Statement s = (Statement) DbManager.getConnection()
+			.createStatement();
+			ResultSet rs = s
+			.executeQuery("SELECT * FROM Tasks WHERE TaskPBItemId=" + pbItem.dbid + " ORDER BY TaskId ASC");
+			while (rs.next()) {
+				Task t  = new Task();
+				t.dbid = rs.getInt("TaskId");
+				t.name = rs.getString("TaskName");
+				t.description = rs.getString("TaskDescription");
+				t.est = rs.getInt("TaskEST");
+				t.prio = rs.getInt("TaskPrio");
+				t.taskPBItemId = rs.getInt("TaskPBItemId");
+				t.taskCheckoutName = rs.getString("TaskCheckoutName");
+				t.taskCheckoutDate.setTime(rs.getDate("TaskCheckoutDate"));
+				t.taskdone = rs.getBoolean("TaskDone");
+				
+				list.add(t);
+			}
+			s.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+		}
 	
 	/**
 	 * Adds task to PbItem

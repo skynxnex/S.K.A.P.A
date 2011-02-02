@@ -5,6 +5,7 @@ import java.util.ArrayList;
 import se.kyh.ad10s.scrumapp.Backlog;
 import se.kyh.ad10s.scrumapp.Command;
 import se.kyh.ad10s.scrumapp.PbItem;
+import se.kyh.ad10s.scrumapp.Task;
 import se.kyh.ad10s.scrumapp.WhiteboardInvoker;
 
 public class UserClient {
@@ -160,6 +161,25 @@ public class UserClient {
 				+ "\n | PRIO: " + pbItemFromDB.prio 
 				+ "\n | SPRINT ID: " + pbItemFromDB.pBItemSprintId
 				+ "\n | BACKLOG ID: " + pbItemFromDB.BacklogId + "\n | \n");
+	}
+	public static void drawAllTasksForPbItem(ArrayList<Task> list) {
+		int numberOfTasks = list.size();
+
+		for (int i = 0; i < numberOfTasks; i++) {
+			System.out.println(" | ");
+
+			System.out.print(" | TASKID: " + list.get(i).dbid);
+			System.out.println("\n | TASKNAME: " + list.get(i).name);
+			System.out.println(" | DESCRIPTION: "
+					+ list.get(i).description + "\n | \n");
+			System.out.print(" | EST: " + list.get(i).est);
+			System.out.print(" | PRIO: " + list.get(i).prio);
+			System.out.print(" | PBITEMID: " + list.get(i).taskPBItemId);
+			System.out.print(" | CHECKEDOUT BY: " + list.get(i).taskCheckoutName);
+			System.out.print(" | CHECKOUTDATE: " + list.get(i).taskCheckoutDate);
+			System.out.print(" | DONE: " + list.get(i).taskdone);
+		}
+	
 	}
 	
 	public static void drawAllItemsIdAndName(ArrayList<PbItem> itemsArray) {

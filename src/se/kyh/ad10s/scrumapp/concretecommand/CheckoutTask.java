@@ -4,6 +4,7 @@ import se.kyh.ad10s.scrumapp.Command;
 import se.kyh.ad10s.scrumapp.Task;
 import se.kyh.ad10s.scrumapp.DAOs.TaskDAO;
 import se.kyh.ad10s.scrumapp.menu.ClientInputs;
+
 /**
  * Executes checkoutTask-method in TaskDAO.java by
  * sending name and taskobject to it.
