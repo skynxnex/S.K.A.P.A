@@ -1,6 +1,2 @@
 bin/*
 .settings
-src/se/kyh/ad10s/scrumapp/ScrumApp.java
-.buildpath
-.classpath
-.project
