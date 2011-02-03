@@ -6,6 +6,7 @@ import java.util.List;
 import java.util.Scanner;
 
 import se.kyh.ad10s.scrumapp.DAOs.SprintDAO;
+import se.kyh.ad10s.scrumapp.concretecommand.AddSprintToBacklog;
 
 public class Sprint {
 	public int sprintid;
@@ -16,9 +17,9 @@ public class Sprint {
 	public int sprintBacklogId;
 	
 	public void newSprint() {
-//		setStartDate();
-//		setEndDate();
-//		this.sprintid = SprintDAO.makeNewSprint(startDate, endDate);
+		setStartDate();
+		setEndDate();
+		AddSprintToBacklog.makeNewSprint(startDate, endDate);
 	}
 
 	public void listAllSprintBacklogItems() {

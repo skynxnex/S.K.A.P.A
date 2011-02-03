@@ -4,6 +4,7 @@ import java.util.HashMap;
 
 import se.kyh.ad10s.scrumapp.concretecommand.AccessSprint;
 import se.kyh.ad10s.scrumapp.concretecommand.AddItemToSprint;
+import se.kyh.ad10s.scrumapp.concretecommand.AddSprintToBacklog;
 import se.kyh.ad10s.scrumapp.concretecommand.CheckoutTask;
 import se.kyh.ad10s.scrumapp.concretecommand.ChooseBacklog;
 import se.kyh.ad10s.scrumapp.concretecommand.ChooseBacklogItem;
@@ -59,6 +60,7 @@ public class WhiteboardInvoker {
 		hm.put("DELETE", new DeleteBacklogItem());
 		hm.put("CHOOSE", new ChooseBacklogItem());
 		hm.put("SPRINT", new AccessSprint());
+		hm.put("ADD", new AddSprintToBacklog());
 //		Alternative inputs
 		hm.put("viewall", new DrawCurrentBacklogItems());
 		hm.put("view", new DrawOneItemInCurrentBacklog());

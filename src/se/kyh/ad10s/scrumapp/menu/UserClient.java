@@ -10,6 +10,9 @@ import se.kyh.ad10s.scrumapp.Sprint;
 import se.kyh.ad10s.scrumapp.WhiteboardInvoker;
 
 public class UserClient {
+	
+	public static boolean isRunningProgram = true;
+	
 	public static boolean userInStartMenu = true;
 	public static boolean userInBacklogMenu;
 	public static boolean userInBacklogItemMenu;
@@ -21,6 +24,7 @@ public class UserClient {
 	public static String SelectedBacklogItemName;
 	public static int SelectedSprint;
 	public static String SelectedSprintName;
+	
 	
 
 	// OUTPUTS
