@@ -121,7 +121,7 @@ public class SprintDAO {
 			Statement s = (Statement) DbManager.getConnection()
 					.createStatement();
 			ResultSet rs = s
-					.executeQuery("SELECT * FROM Sprint WHERE SprintBacklogId = "+id+"ORDER BY SprintStartDate ASC");
+					.executeQuery("SELECT * FROM Sprint WHERE SprintBacklogId = "+id+" ORDER BY SprintStartDate ASC");
 			while (rs.next()) {
 				Sprint sprint = new Sprint();
 				sprint.sprintid = rs.getInt("SprintId");
