@@ -26,7 +26,7 @@ public class BurndownChart {
 	private int startDaysToNow;
 	private ArrayList<PbItem> list = new ArrayList<PbItem>();
 
-	public BurndownChart(Sprint sprint) {
+	public void DrawBurndownChart(Sprint sprint) {
 		this.sprintId = sprint.sprintid;
 		this.startDate = sprint.startDate;
 		this.endDate = sprint.endDate;

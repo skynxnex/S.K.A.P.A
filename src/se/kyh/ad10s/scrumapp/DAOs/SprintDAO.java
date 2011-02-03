@@ -97,7 +97,7 @@ public class SprintDAO {
 	 * Removes PbItems from a sprint
 	 * @param PbItem id
 	 */
-	public void removeItemFromSprintBacklog(int id) {
+	public static void removeItemFromSprintBacklog(int id) {
 		try {
 			PreparedStatement s = DbManager.getConnection().prepareStatement(
 					"UPDATE PBItems SET PBItemSprintId = ? WHERE PBItemId=?");

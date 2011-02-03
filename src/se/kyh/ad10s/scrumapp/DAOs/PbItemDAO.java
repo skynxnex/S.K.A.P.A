@@ -158,5 +158,42 @@ public class PbItemDAO {
 		return returnvalue;			
 	}
 
+	/**
+	 * @param PbItem object
+	 * @return Arraylist with Task objects
+	 * List all task to PbItem
+	 */
 	
+	public static ArrayList<Task> drawAllTasksForPbItem(PbItem pbItem){
+		ArrayList<Task> list = new ArrayList<Task>();
+		
+		try{
+			Statement s = (Statement) DbManager.getConnection()
+			.createStatement();
+			ResultSet rs = s
+			.executeQuery("SELECT * FROM Tasks WHERE TaskPBItemId=" + pbItem.dbid + " ORDER BY TaskId ASC");
+			while (rs.next()) {
+				Task t  = new Task();
+				t.dbid = rs.getInt("TaskId");
+				t.name = rs.getString("TaskName");
+				t.description = rs.getString("TaskDescription");
+				t.est = rs.getInt("TaskEST");
+				t.prio = rs.getInt("TaskPrio");
+				t.taskPBItemId = rs.getInt("TaskPBItemId");
+				t.taskCheckoutName = rs.getString("TaskCheckoutName");
+				if(rs.getDate("taskCheckoutDate") != null) {
+					t.taskCheckoutDate.setTime(rs.getDate("taskCheckoutDate"));
+				} else {
+					t.taskCheckoutDate.set(2000, 0, 01);
+				}
+				t.taskdone = rs.getBoolean("TaskDone");
+				
+				list.add(t);
+			}
+			s.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return list;
+		}
 }
