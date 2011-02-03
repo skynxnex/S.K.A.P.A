@@ -1,2 +1,10 @@
 bin/*
+<<<<<<< HEAD
 .settings
+=======
+.settings
+src/se/kyh/ad10s/scrumapp/ScrumApp.java
+.buildpath
+.classpath
+.project
+>>>>>>> branch 'refs/heads/master' of https://nli75@github.com/skynxnex/S.K.A.P.A.git
