@@ -52,7 +52,7 @@ public class UserClient {
 		System.out.println("---SPRINTOPTIONS---");
 		System.out.println("ADD           add a new sprint to this backlog");
 		System.out.println("REMOVE        remove a sprint from this backlog");
-		System.out.println("LIST          list all availible SPRINTS in this backlog");
+		System.out.println("LIST          list all sprints in this backlog");
 
 		System.out.println("SPRINT        access sprintmenu");
 		System.out
@@ -66,9 +66,10 @@ public class UserClient {
 		System.out.print("\\");
 		System.out.print(SelectedBacklogItemName);
 		System.out.print("\n");
-		System.out.println("VIEWALL    view all TASKS in this ITEM");
 		System.out.println("ADD        add an ITEM to SPRINT");
 		System.out.println("REMOVE     remove an ITEM from SPRINT");
+		System.out.println("---TASKOPTIONS---");
+		System.out.println("VIEWALL    view all TASKS in this ITEM");
 		System.out.println("CREATE     create a new task");
 		System.out.println("DELETE     delete a task");
 		System.out.println("CHECKOUT   checkout a task to work on");			
